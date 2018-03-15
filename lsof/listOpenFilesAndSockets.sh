@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function givenPID() {
-    lsof -p $( pgrep konsole )
+    lsof -i -n -P -p $( pgrep konsole )
 }
 
 function run() {

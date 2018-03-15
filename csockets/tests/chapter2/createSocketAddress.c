@@ -63,17 +63,44 @@ void test_createAbstractLocalAddress() {
     assert(0 == z);
 }
 
+// Socket Example P77
+// For agreement to exist over the network, it was decided that big-endian byte
+// order would be the order used on a network.
 void test_convertHostOrderToNetworkOrder() {
-    uint16_t h = 0x1234;
-    uint16_t n = htons(h);
-    assert(0x3412 == n);
+    uint16_t fromShort = 0x1234;
+    uint32_t fromLong = 0xDEADBEEF;
+    uint16_t toShort = htons(fromShort);
+    assert(0x3412 == toShort);
+    fromShort = ntohs(toShort);
+    assert(0x1234 == fromShort);
+    assert(0xDEADBEEF == htonl(ntohl(fromLong)));
 }
 
-// Socket Example P77
-// For agreement to exist over the network, it was decided that big-endian byte 
-// order would be the order used on a network.
-void test_createIPv4SocketAddress() {
-    ;
+void test_createWildIPv4SocketAddress() {
+    struct sockaddr_in addr;
+    int len = 0;
+    int z = -1;
+    addr.sin_family = AF_INET;
+    addr.sin_port = ntohs(0);
+    addr.sin_addr.s_addr = ntohl(INADDR_ANY);
+    len = sizeof(addr);
+}
+
+void test_createSpecificIPv4SocketAddress() {
+    struct sockaddr_in addr;
+    socklen_t len = 0;
+    int s = -1;
+    int z = -1;
+    const unsigned char IPno[4] = {127, 0, 0, 23};
+    s = socket(AF_INET, SOCK_STREAM, 0);
+    assert(-1 != s);
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(9000);
+    memcpy(&addr.sin_addr.s_addr, IPno, 4);
+    len = sizeof(addr);
+    z = bind(s, (struct sockaddr *)&addr, len);
+    assert(0 == z);
+    close(s);
 }
 
 int main() {
