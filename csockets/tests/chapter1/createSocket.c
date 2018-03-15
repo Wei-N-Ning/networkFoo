@@ -13,6 +13,8 @@ void RunTinyTests();
 void test_createSocketExpectSuccess() {
     int z;
     int s[2];
+    // protocol of 0 allows the OS to choose the correct default protocol to be
+    // used for the domain (Socket by Example P63)
     z = socketpair(AF_LOCAL, SOCK_STREAM, 0, s);
     assert(0 == z);
 }
