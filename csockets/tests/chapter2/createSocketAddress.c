@@ -49,6 +49,8 @@ void test_createAbstractLocalAddress() {
     strncpy(addr.sun_path, path, sizeof(addr.sun_path))[sizeof(addr.sun_path)] = '\0';
     len = SUN_LEN(&addr);
     assert(20 == len);
+
+    // WARNING: make sure SUN_LEN() macro is called before this
     addr.sun_path[0] = '\0';
 
     // expect @there*is-no+spoon to show up in netstat -ap
@@ -58,6 +60,13 @@ void test_createAbstractLocalAddress() {
     assert(0 == z);
     z = close(s);
     assert(0 == z);
+}
+
+// Socket Example P77
+// For agreement to exist over the network, it was decided that big-endian byte 
+// order would be the order used on a network.
+void test_createIPv4SocketAddress() {
+    ;
 }
 
 int main() {
