@@ -12,5 +12,6 @@ function(add_tinytest_executable targetName sourcePath)
     add_custom_command(
         OUTPUT ${testRunner}
         COMMAND ${generator} ${sourcePathAbs} ${CMAKE_BINARY_DIR}/${targetName}_automain${automainExtension}
+        DEPENDS ${sourcePath}
     )
 endfunction()

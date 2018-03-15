@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <netinet/in.h>
 
 void RunTinyTests();
 
@@ -60,6 +61,12 @@ void test_createAbstractLocalAddress() {
     assert(0 == z);
     z = close(s);
     assert(0 == z);
+}
+
+void test_convertHostOrderToNetworkOrder() {
+    uint16_t h = 0x1234;
+    uint16_t n = htons(h);
+    assert(0x3412 == n);
 }
 
 // Socket Example P77
