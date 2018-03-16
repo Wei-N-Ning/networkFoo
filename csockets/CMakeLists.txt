@@ -10,7 +10,11 @@ set(CMAKE_C_FLAGS "-Wno-implicit-function-declaration")
 
 add_tinytest_executable(test_createSocket tests/chapter1/createSocket.c)
 add_test(NAME chapter1::createSocket COMMAND test_createSocket)
+
 add_tinytest_executable(test_createSocketAddress tests/chapter2/createSocketAddress.c)
 add_test(NAME chapter2::createSocketAddress COMMAND test_createSocketAddress)
+
+add_tinytest_executable(test_classifyIPAddresses tests/chapter3/classifyIPAddresses.c)
+add_test(NAME chapter3::classifyIPAddresses COMMAND test_classifyIPAddresses)
 
 
