@@ -20,3 +20,6 @@ add_test(NAME chapter3::classifyIPAddresses COMMAND test_classifyIPAddresses)
 add_tinytest_executable(test_socketTypes tests/chapter4/socketTypes.c)
 add_test(NAME chapter4::socketTypes COMMAND test_socketTypes)
 
+add_tinytest_executable(test_bindAddressToSocket tests/chapter5/bindAddressToSocket.c)
+add_test(NAME chapter5::bindAddressToSocket COMMAND test_bindAddressToSocket)
+
