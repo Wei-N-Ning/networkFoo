@@ -27,7 +27,7 @@ void test_createSocketExpectFailure() {
 }
 
 void test_performIOExpectSuccess() {
-    int z;
+    ssize_t z;
     int s[2];
     char buf[80];
     z = socketpair(AF_LOCAL, SOCK_STREAM, 0, s);
@@ -52,9 +52,15 @@ void test_performIOExpectSuccess() {
     assert(0 == z);
     
     // close
+    z = close(s[1]);
+    assert(0 == z);
+
     z = close(s[0]);
     assert(0 == z);
-    z = close(s[1]);
+
+    // see Five Pitfalls of Linux Socket Programming Note
+    // reading from a closed socket yields 0
+    z = read(s[1], buf, sizeof(buf));
     assert(0 == z);
 }
 
