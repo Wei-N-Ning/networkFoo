@@ -3,6 +3,8 @@
 //
 
 #include <assert.h>
+#include <limits.h>
+#include <stdio.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <memory.h>
@@ -112,7 +114,89 @@ void test_givenAddressStringsExpectAddrs() {
 
 /// using a better function inet_aton to do the conversion
 
+void test_convertAddressStringExpectAddrStruct() {
+    struct sockaddr_in addr;
+    int z = 0;
+    z = inet_aton("127.12.34.122", &addr.sin_addr);
+    assert(0 != z);
+    z = inet_aton("127.12.340.122", &addr.sin_addr);
+    assert(0 == z);
+}
 
+/// round trip conversion inet_aton, inet_ntoa
+
+void test_roundTripConversion() {
+    struct sockaddr_in addr;
+    int z = 0;
+    const char *s;
+    z = inet_aton("127.12.34.122", &addr.sin_addr);
+    assert(0 != z);
+    s = inet_ntoa(addr.sin_addr);
+    assert(0 == strcmp("127.12.34.122", s));
+}
+
+/// convert IP address from net- to host-order then
+/// extract the host portion
+
+const char *ExtractHostID(const char *ad) {
+    struct sockaddr_in addr;
+    struct sockaddr_in temp;
+    in_addr_t hostId;
+    if (!inet_aton(ad, &addr.sin_addr)) {
+        return 0;
+    }
+    hostId = inet_lnaof(addr.sin_addr);
+    temp.sin_addr = inet_makeaddr(0, hostId);
+    return inet_ntoa(temp.sin_addr);
+}
+
+const char *ExtractNetID(const char *ad) {
+    struct sockaddr_in addr;
+    struct sockaddr_in temp;
+    in_addr_t netId;
+    if (!inet_aton(ad, &addr.sin_addr)) {
+        return 0;
+    }
+    netId = inet_netof(addr.sin_addr);
+    temp.sin_addr = inet_makeaddr(netId, 0);
+    return inet_ntoa(temp.sin_addr);
+}
+
+void test_extractHostID() {
+    const char *addrs[4] = {
+        "44.135.86.12",
+        "127.0.0.1",
+        "172.16.23.95",
+        "192.168.9.1"
+    };
+    const char *expected[4] = {
+        "0.135.86.12",
+        "0.0.0.1",
+        "0.0.23.95",
+        "0.0.0.1",
+    };
+    for (int i=0; i<4; ++i) {
+        assert(0 == strcmp(expected[i], ExtractHostID(addrs[i])));
+    }
+}
+
+void test_extractNetId() {
+    const char *addrs[4] = {
+        "44.135.86.12",
+        "127.0.0.1",
+        "172.16.23.95",
+        "192.168.9.1"
+    };
+    const char *expected[4] = {
+        "44.0.0.0",
+        "127.0.0.0",
+        "172.16.0.0",
+        "192.168.9.0",
+    };
+    for (int i=0; i<4; ++i) {
+        assert(0 == strcmp(expected[i], ExtractNetID(addrs[i])));
+    }
+}
 
 int main(int argc, char **argv) {
     RunTinyTests();
