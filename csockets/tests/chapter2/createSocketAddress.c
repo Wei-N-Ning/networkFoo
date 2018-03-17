@@ -82,7 +82,7 @@ void test_createWildIPv4SocketAddress() {
     int z = -1;
     addr.sin_family = AF_INET;
     addr.sin_port = htons(0);
-    addr.sin_addr.s_addr = ntohl(INADDR_ANY);
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
     len = sizeof(addr);
 
     // expect addr to be 0.0.0.0
