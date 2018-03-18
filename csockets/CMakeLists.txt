@@ -23,3 +23,7 @@ add_test(NAME chapter4::socketTypes COMMAND test_socketTypes)
 add_tinytest_executable(test_bindAddressToSocket tests/chapter5/bindAddressToSocket.c)
 add_test(NAME chapter5::bindAddressToSocket COMMAND test_bindAddressToSocket)
 
+add_tinytest_executable(test_datagrams tests/chapter6/datagrams.c)
+add_test(NAME chapter6::datagrams COMMAND test_datagrams)
+
+

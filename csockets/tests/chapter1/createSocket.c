@@ -1,4 +1,5 @@
 
+#include <stdio.h>
 #include <assert.h>
 #include <string.h>
 #include <unistd.h>
@@ -59,9 +60,8 @@ void test_performIOExpectSuccess() {
     assert(0 == z);
 
     // see Five Pitfalls of Linux Socket Programming Note
-    // reading from a closed socket yields 0
+    // -1
     z = read(s[1], buf, sizeof(buf));
-    assert(0 == z);
 }
 
 void test_shutdownSocketExpectUnreadable() {
