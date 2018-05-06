@@ -2,6 +2,8 @@
 
 # good reference:
 # https://github.com/wwalker/ssh-find-agent/blob/master/ssh-find-agent.sh
+# read: http://tldp.org/LDP/abs/html/declareref.html
+
 
 function listSshAgentPids() {
     ps -ALL | grep ssh-agent | awk -c 'NF > 2 && /^[ 0-9]+/ { print $1 }'
