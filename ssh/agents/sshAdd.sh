@@ -15,7 +15,7 @@ bindAddress="/tmp/_something_something"
 envVariables="/tmp/_something_something_vars"
 
 function getCmd() {
-    if [ -f ${bindAddress} ] && [ -f ${envVariables} ]
+    if ( ls ${bindAddress} ${envVariables} 2>&1 1>/dev/null )
     then
         echo "found agent bind address: ${bindAddress}"
         cat ${envVariables}
