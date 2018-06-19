@@ -6,6 +6,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+// read also:
+// http://beej.us/net2/html/syscalls.html
+// refresher: what is AF and PF (hint - something family)
+
 void RunTinyTests();
 
 // AF_LOCAL is unix domain (preferred over AF_UNIX)
