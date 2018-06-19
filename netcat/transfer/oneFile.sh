@@ -18,7 +18,7 @@ function doPing() {
 
 function run() {
     local fileAtSrc="/tmp/_"
-    echo "" > ${fileAtSrc}
+    dd if=/dev/zero of=${fileAtSrc} bs=100M count=1 >/dev/null 2>&1
 
     local fileAtDst="/tmp/__"
     rm -f ${fileAtDst}
