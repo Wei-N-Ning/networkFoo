@@ -9,6 +9,9 @@
 
 void RunTinyTests();
 
+// linux socket by example P64
+// local addresses:
+// this address format is used by
 void test_createUnixAddressUsingFSPath() {
     int z;
     int s;

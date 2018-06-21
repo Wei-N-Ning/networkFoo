@@ -48,6 +48,9 @@ void RunTinyTests();
 // AF_LOCAL sockets are also referred to as Unix sockets
 // netstat --unix -p
 // expect to see the name of this executable to show in the program column
+// see also linux socket by example P63
+// for socketpair() function, the domain arg must always be
+// AF_LOCAL or AF_UNIX
 void test_createSocketExpectSuccess() {
     assert(_sock->r_sock);
 }
