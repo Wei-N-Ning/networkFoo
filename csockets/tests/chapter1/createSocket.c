@@ -46,7 +46,13 @@ void RunTinyTests();
 
 // AF_LOCAL is unix domain (preferred over AF_UNIX)
 // AF_LOCAL sockets are also referred to as Unix sockets
+//
+// how to verify
+//
 // netstat --unix -p
+//
+// see howToVerify.sh for more details
+//
 // expect to see the name of this executable to show in the program column
 // see also linux socket by example P63
 // for socketpair() function, the domain arg must always be
