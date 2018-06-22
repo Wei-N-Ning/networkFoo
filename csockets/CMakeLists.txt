@@ -14,6 +14,9 @@ add_test(NAME chapter1::simpleServerClient COMMAND chapter1_simpleServerClient)
 add_tinytest_executable(chapter2_createSocketAddress tests/chapter2/createSocketAddress.c)
 add_test(NAME chapter2::createSocketAddress COMMAND chapter2_createSocketAddress)
 
+add_executable(chapter2_bindLocalSocket tests/chapter2/bindLocalSocket.c)
+add_test(NAME chapter2::bindLocalSocket COMMAND chapter2_bindLocalSocket)
+
 add_tinytest_executable(chapter3_classifyIPAddresses tests/chapter3/classifyIPAddresses.c)
 add_test(NAME chapter3::classifyIPAddresses COMMAND chapter3_classifyIPAddresses)
 
