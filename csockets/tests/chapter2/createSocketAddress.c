@@ -79,6 +79,13 @@ void test_convertHostOrderToNetworkOrder() {
     assert(0xDEADBEEF == htonl(ntohl(fromLong)));
 }
 
+// source
+// linux socket by example P79
+// when you specify a wild IP number, you allow the
+// system to pick the route to the rmote service,
+// the kernel will then determine what your final
+// local socket address will be at the time the
+// connection is established
 void test_createWildIPv4SocketAddress() {
     struct sockaddr_in addr;
     int len = 0;
@@ -89,6 +96,19 @@ void test_createWildIPv4SocketAddress() {
     len = sizeof(addr);
 
     // expect addr to be 0.0.0.0
+}
+
+// source
+// linux socket by example P79
+// another commonly used IP number is ... this refers
+// to the loopback device.
+// the loopback device lets you communicate with another
+// process on the same host as your process
+void test_createLoopbackSocketAddress() {
+    struct sockaddr_in addr;
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(0);
+    addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 }
 
 void test_createSpecificIPv4SocketAddress() {
