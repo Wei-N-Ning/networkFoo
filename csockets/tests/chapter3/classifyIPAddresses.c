@@ -33,6 +33,46 @@ Address_t CreateAddress(
     return addr;
 }
 
+// Linux Socket By Example
+
+// class A
+//    net     host
+// 0 7 bits  24 bits
+// 0.0.0.0 - 127.255.255.255
+// netmask:  255.0.0.0
+
+// class B
+//       net      host
+// 1 0 14 bits  16 bits
+// 128.0.0.0 - 191.255.255.255
+// netmask: 255.255.0.0
+
+// class C
+//         net      host
+// 1 1 0 21 bits   8 bits
+// 192.0.0.0 - 223.255.255.255
+// netmask: 255.255.255.0
+
+// P96
+// Sometimes in network software your software must be able to
+// classify a network address. Sometimes this is simply done
+// in order to determine a default netmask value.
+
+// P100
+// Private IP number allocations
+
+// class A
+// 10.0.0.0 - 10.255.255.255 / 255.0.0.0
+// one network; very large total number of hosts
+
+// class B
+// 172.16.0.0 - 172.31.255.255 / 255.255.0.0
+// a good number of both networks and hosts
+
+// class C
+// 192.168.0.0 - 192.168.255.255 / 255.255.255.0
+// if the total number of networks and hosts is small
+
 Classi_t Classify(const Address_t *ad) {
     unsigned char msb; // msb: most significant byte
     struct sockaddr_in addr;
@@ -92,6 +132,11 @@ void test_givenAddressExpectNetMask() {
 }
 
 /// testing the legacy function inet_addr
+/// see By Example P101
+/// this function accepts an input C string and parses
+/// the dotted-quad notation into a 32-bit internet
+/// address value. The 32-bit value returned is in
+/// network byte order (no need to call htonl() )
 
 void test_givenEmptyCStringExpectNoneAddr() {
     unsigned long addr;
@@ -113,6 +158,18 @@ void test_givenAddressStringsExpectAddrs() {
 }
 
 /// using a better function inet_aton to do the conversion
+/// see By Example P104
+/// an improved way to convert a string IP number into
+/// a 32-bit networked sequenced IP number
+///
+/// Note:
+/// it returns a status code and uses output parameter;
+/// it takes the address of sin_addr
+/// struct sockaddr_in {
+///    struct in_addr sin_addr;
+/// }
+/// recall there is sockaddr_un (unix) and its counterpart,
+/// sockaddr_in (internet)
 
 void test_convertAddressStringExpectAddrStruct() {
     struct sockaddr_in addr;
@@ -137,6 +194,15 @@ void test_roundTripConversion() {
 
 /// convert IP address from net- to host-order then
 /// extract the host portion
+/// Note on
+///
+/// inet_aton()
+///
+/// the address string is converted into a static buffer,
+/// which is internal to this function
+/// this c array is returned as the return  value.
+/// the results will be valid only until the next call
+/// to this function
 
 const char *ExtractHostID(const char *ad) {
     struct sockaddr_in addr;
