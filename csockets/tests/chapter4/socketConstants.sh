@@ -12,7 +12,7 @@ function showPythonSocketProtocols() {
 import socket
 for _ in sorted([c for c in dir(socket)
     if c.startswith('AF') or c.startswith('PF')]):
-    print _
+    print(_)
 "
 }
 
@@ -21,7 +21,7 @@ function showPythonSocketTypes() {
 import socket
 for _ in sorted([c for c in dir(socket)
     if c.startswith('SOCK')]):
-    print _
+    print(_)
 "
 }
 
