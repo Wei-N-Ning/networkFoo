@@ -23,8 +23,7 @@ add_test(NAME chapter3::classifyIPAddresses COMMAND chapter3_classifyIPAddresses
 add_tinytest_executable(chapter4_socketTypes tests/chapter4/socketTypes.c)
 add_test(NAME chapter4::socketTypes COMMAND chapter4_socketTypes)
 
-add_tinytest_executable(chapter5_bindAddressToSocket tests/chapter5/bindAddressToSocket.c)
-add_test(NAME chapter5::bindAddressToSocket COMMAND chapter5_bindAddressToSocket)
+add_subdirectory(tests/chapter5)
 
 add_tinytest_executable(chapter6_datagrams tests/chapter6/datagrams.c)
 add_test(NAME chapter6::datagrams COMMAND chapter6_datagrams)
