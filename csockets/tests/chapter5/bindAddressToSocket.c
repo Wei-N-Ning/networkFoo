@@ -13,7 +13,7 @@
 
 void RunTinyTests();
 
-void test_bindSocketWithAddressExpectFail() {
+void test_bindINETStreamSocket() {
     int so;
 
     // constants
