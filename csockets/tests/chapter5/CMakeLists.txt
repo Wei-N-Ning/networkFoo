@@ -12,3 +12,10 @@ add_test(
     NAME chapter5::getSocketAddress
     COMMAND chapter5_getSocketAddress
 )
+
+add_executable(chapter5_getPeerSocketAddress
+    getPeerSocketAddress.c)
+add_test(
+    NAME chapter5::getPeerSocketAddress
+    COMMAND chapter5_getPeerSocketAddress
+)
