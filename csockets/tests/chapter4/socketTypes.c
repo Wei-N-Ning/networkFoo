@@ -119,6 +119,60 @@ void test_createPFINetStreamSocket() {
     assert(0 == close(s));
 }
 
+// By Example P128
+
+// being implicit (protocol = 0) - relying on the Linux kernel
+// to choose the correct protocol for the other parameters
+
+// being explicit (protocol = ... ) - when no substitution is
+// permitted, but someone might have to go back and change the
+// code
+
+// four combinations of socket type and protocol
+
+void test_PFLOCAL_SOCKSTREAM() {
+    // 0 is the only valid value for the protocol argument
+    // of socket() and socketpair(), when domain argument is
+    // PF_LOCAL
+    int s = socket(PF_LOCAL, SOCK_STREAM, 0);
+    close(s);
+}
+
+void test_PFLOCAL_SOCKDGRAM() {
+    // Datagram sockets are attractive to use for PF_LOCAL
+    // sockets because they are mostly reliable and they
+    // preserve message boundaries.
+    // They don't get lost in network transmission errors
+    // as PF_INET datagrams can, because they remain
+    // internal to the local host.
+    // However you should assume that kernel buffer
+    // shortages might cause PF_LOCAL packets to be lost
+    int s = socket(PF_LOCAL, SOCK_DGRAM, 0);
+    close(s);
+}
+
+void test_PFINET_SOCKSTREAM() {
+    // if protocol == 0, kernel chooses IPPROTO_TCP
+    // this causes the socket to use the TCP/IP protocol
+
+    // The TCP part of the TCP/IP designation is the
+    // transport level protocol that is built on top
+    // of the IP layer. This provides the data packet
+    // sequencing ,error control and recovery.
+    // TCP makes it possible to provide a stream socket
+    // using the Internet protocol.
+    int s = socket(PF_INET, SOCK_STREAM, 0);
+    close(s);
+}
+
+void test_PFINET_SOCKDGRAM() {
+    // this protocol allows the application to send datagrams
+    // from your socket to the remote socket, to which you
+    // have addressed it
+    int s = socket(PF_INET, SOCK_DGRAM, 0);
+    close(s);
+}
+
 void test_createUDPSocket() {
     int s;
     s = socket(PF_INET, SOCK_DGRAM, 0);
