@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# warning: result is VERY long!
 function run() {
     cat /etc/services | awk '
 { 
@@ -8,7 +9,7 @@ function run() {
         print arr[1], arr[2]
     }
 } 
-' > /dev/null
+'
 }
 
 run
