@@ -1,2 +1,0 @@
-
-add_executable(chapter6_simpleUDPServer simpleUDPServer.c)
