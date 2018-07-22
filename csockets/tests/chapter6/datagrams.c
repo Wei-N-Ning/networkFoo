@@ -14,19 +14,7 @@
 // 3865 (bytes) ~ 3KB
 //}
 
-void RunTinyTests();
-
-void test_nothing() {
-    int z;
-    char *serverAd = NULL;
-    struct sockaddr_in addr;
-    struct sockaddr_in addrClient;
-    int len_inet;
-    int so;
-}
-
 int main(int argc, char **argv) {
-    RunTinyTests();
     return 0;
 }
 
