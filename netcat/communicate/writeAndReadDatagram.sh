@@ -3,6 +3,10 @@
 # related reading:
 # Linux Socket By Example 166 (sendto())
 
+# See csockets/tests/chapter6/simpleUDPServer.sh for a
+# C implementation, following the example in the book,
+# of the same client-server model.
+
 # source:
 #
 # use Linux Pipe:
@@ -15,6 +19,15 @@
 #
 # set timeout to 0 so that netcat won't wait forever
 # https://serverfault.com/questions/498880/nc-netcat-hangs-waiting-for-more-data-in-udp-mode
+# however this still requires the "recipient" address and port to
+# be valid, otherwise it blocks
+# see
+# https://stackoverflow.com/questions/45122231/netcat-will-not-send-messages-through-udp-connection-between-socket-pdu-blocks-i
+# https://stackoverflow.com/questions/10250003/how-to-avoid-netcat-from-blocking-when-using-it-as-a-client-to-send-a-file-or-p
+# https://stackoverflow.com/questions/11387067/using-netcat-to-send-a-udp-packet-without-binding
+# this is pretty neat:
+# https://stackoverflow.com/questions/12267905/how-to-send-a-file-using-netcat-and-then-keep-the-connection-alive
+
 
 
 ADDR_AFLOCAL=/tmp/sut/thereisacow

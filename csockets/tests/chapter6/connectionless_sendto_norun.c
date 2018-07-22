@@ -60,8 +60,6 @@ int main() {
     const char* message = "iddqd";
     int message_len = (int)strlen(message);
 
-
-
     return 0;
 }
 
