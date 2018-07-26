@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function showLastLoggedOnUsers() {
+showLastLoggedOnUsers() {
     last -a
 }
 
