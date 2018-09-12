@@ -5,15 +5,15 @@
 # read: http://tldp.org/LDP/abs/html/declareref.html
 
 
-function listSshAgentPids() {
+listSshAgentPids() {
     ps -ALL | grep ssh-agent | awk -c 'NF > 2 && /^[ 0-9]+/ { print $1 }'
 }
 
-function getParentPid() {
+getParentPid() {
     ps -o ppid= -p ${1:-"require pid"}
 }
 
-function run() {
+run() {
     local parentPid=""
     for saPid in $( listSshAgentPids )
     do

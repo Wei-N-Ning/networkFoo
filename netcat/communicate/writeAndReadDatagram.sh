@@ -7,6 +7,13 @@
 # C implementation, following the example in the book,
 # of the same client-server model.
 
+# Note this example is also a good starting point to see the internal 
+# activities behind sendto() and recvfrom() (i.e. strace)
+# do:
+# echo "asd" >${TMPDIR}/dd
+# nc -w 0 -l -u 127.0.0.1 9988 &
+# nc -w 0 -u 127.0.0.1 9988 <${TMPDIR}/dd
+
 # source:
 #
 # use Linux Pipe:

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-function run() {
+# note the use of ( -f - ), which prints the binary content of the 
+# archive to stdout;
+# this output stream is then received by cat in the remote end and 
+# redirected to a file
+run() {
     rm -rf /tmp/doom
     mkdir /tmp/doom
     echo "iddqd idkfa" > /tmp/doom/map
