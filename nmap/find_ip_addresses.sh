@@ -8,3 +8,8 @@
 # then
 
 nmap -sP 192.168.1.*
+
+# $1: 192.168.1.*
+scan_one() {
+    nmap -sP "${1}" | perl -lne "/for\s(has\w+)/ && print \$1"
+}
