@@ -15,5 +15,7 @@ netstat -lnp 2>/dev/null
 # source
 # https://www.youtube.com/watch?v=l0QGLMwR-lY
 # mnemonic: [tulpin] 
+# to see ALL the program names:
+# sudo netstat -tulpn 
 netstat -tulpn
 
