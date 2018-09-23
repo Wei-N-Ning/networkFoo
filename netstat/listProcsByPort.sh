@@ -11,3 +11,9 @@ netstat -lnp 2>/dev/null
 # listening port. This will work under Linux,
 # but not all others (like AIX.)
 # Add -t if you want TCP only.
+
+# source
+# https://www.youtube.com/watch?v=l0QGLMwR-lY
+# mnemonic: [tulpin] 
+netstat -tulpn
+
