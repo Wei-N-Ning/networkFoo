@@ -10,4 +10,7 @@
 # ports on the server; the server process runs with 
 # lesser privilage hence lower the risk
 
+# L1133, on subnet and security
+# the only servers that should run in public subnet
+# are the reverse proxies and load balancers
 
