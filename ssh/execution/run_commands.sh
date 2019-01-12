@@ -4,7 +4,7 @@ set -euo pipefail
 
 run_single_command() {
     # service
-    ssh wein@192.168.0.15 "df -h" | \
+    ssh ubuntu@54.252.141.241 -i ./mortalenginex2.enc "df -h" | \
         # filter
         perl -lane '@F[5] =~ /\/$/ && print $_'
 
