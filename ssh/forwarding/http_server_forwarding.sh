@@ -48,4 +48,7 @@ etablishing_forwarding() {
     # public-ip:6080
 }
 
+# see:
+# https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel-local.html
+
 # ssh -i ~/mykeypair.pem -N -L 8157:ec2-###-##-##-###.compute-1.amazonaws.com:8088 hadoop@ec2-###-##-##-###.compute-1.amazonaws.com
