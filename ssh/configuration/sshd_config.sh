@@ -13,3 +13,12 @@ disable_root_login() {
     sudo systemctl restart sshd
     sudo systemctl status sshd
 }
+
+# see more config:
+# https://www.ssh.com/ssh/sshd_config/
+
+# https://www.ssh.com/ssh/config/
+
+# https://help.ubuntu.com/community/SSH/OpenSSH/Configuring
+
+# https://help.ubuntu.com/lts/serverguide/openssh-server.html.en
