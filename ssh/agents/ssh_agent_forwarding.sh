@@ -35,3 +35,7 @@ login_bastion() {
 
 # see also:
 # https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/ 
+
+# https://stackoverflow.com/questions/12257968/how-to-forward-local-keypair-in-a-ssh-session
+
+# https://serverfault.com/questions/404447/why-is-ssh-agent-forwarding-not-working
