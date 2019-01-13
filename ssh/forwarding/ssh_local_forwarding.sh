@@ -45,7 +45,48 @@ test_tunneling() {
     # ssh ubuntu@192.168.0.7 -p 32145
     # CAN NOT connect
 
+    # test 3: ctrl+c terminates the ssh -L process, and try ssh-to
+    # ubuntu@localhost; connection is refused
+
     # i need to move this ssh-tunnel to the bastion server 
     # and instead of connecting localhost, ssh-to the server
     # this is the next step
 }
+
+run_forwarding_on_local_macbook() {
+    # read this:
+    # https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot
+    # the improvement in this test is that, other host in my network (gunship) 
+    # can also use the bastion srv to ssh-to the private VM:
+    # on gunship: 
+    # > ssh-add the private key (mortalengine)
+    # > ssh -A ubuntu@192.168.0.7 -p 32145
+    ssh -A -N -L 192.168.0.7:32145:10.0.1.201:22 ubuntu@13.211.3.235
+}
+
+run_forwarding_on_bastion() {
+    # this to run the ssh -L process on bastion srv
+    # the above article helps me again
+    # and the key is here:
+    # The star implies that you listen on all addresses, 
+    # and not localhost, which you cannot connect to from other machines.
+    # https://serverfault.com/questions/910526/ssh-local-port-forwarding-working-from-localhost-only
+    #  
+    ssh -A -N -L *:32145:10.0.1.201:22 localhost
+    #            ^^^^^^^
+    # previously I hardcoded the IP address of the machine that ran
+    # the forwarding command to my local macbook's IP address; 
+    # this time this address is a wildcard meaning any address is allowed
+    # localhost:32145 will not work because other machines can not 
+    # connect to "localhost" (loopback interface) from outside
+    # the forwarder is localhost 
+
+    # to verify on gunship:
+    # > ssh-add mortalengine private key
+    ssh -A ubuntu@13.211.3.235 -p 32145
+
+    # note that one can still log on to the bastion server via normal
+    # ssh port:
+    ssh -A ubuntu@13.211.3.235
+}
+
