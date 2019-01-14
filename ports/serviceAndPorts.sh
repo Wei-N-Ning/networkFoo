@@ -2,6 +2,7 @@
 
 # warning: result is VERY long!
 function run() {
+    # NOTE: works on mac
     cat /etc/services | awk '
 { 
     split($2, arr, "/")
