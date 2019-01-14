@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 function run() {
+    # not working on mac
     netstat -lnp
 }
 

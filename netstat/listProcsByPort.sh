@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# NOT WORKING ON MAC!
+
 # stderr: noises
 netstat -nepal 2>/dev/null | grep -i 22
 
