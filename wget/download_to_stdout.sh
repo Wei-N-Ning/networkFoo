@@ -26,6 +26,7 @@ wget_to_stdout() {
     
     # example:
     # wget -O - https://github.com/powergun/vimFood/raw/master/inst 2>/dev/null | bash
+    # cat <( wget -O - https://github.com/powergun/vimFood/raw/master/inst 2>/dev/null )
 }
 
 

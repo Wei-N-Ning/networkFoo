@@ -1,0 +1,20 @@
+--2019-01-14 11:56:04--  https://github.com/powergun/vimFood/raw/master/inst
+Resolving github.com (github.com)... 192.30.255.112, 192.30.255.113
+Connecting to github.com (github.com)|192.30.255.112|:443... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://github.com/Wei-N-Ning/vimFood/raw/master/inst [following]
+--2019-01-14 11:56:05--  https://github.com/Wei-N-Ning/vimFood/raw/master/inst
+Reusing existing connection to github.com:443.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/Wei-N-Ning/vimFood/master/inst [following]
+--2019-01-14 11:56:06--  https://raw.githubusercontent.com/Wei-N-Ning/vimFood/master/inst
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.28.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.28.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3137 (3.1K) [text/plain]
+Saving to: ‘STDOUT’
+
+     0K ...                                                   100% 24.5M=0s
+
+2019-01-14 11:56:06 (24.5 MB/s) - written to stdout [3137/3137]
+
