@@ -13,3 +13,10 @@
 
 # tcpdump tcp port 45000
 
+listen_to_ssh22_on_mac() {
+    # require sudo perm
+    sudo tcpdump tcp port 22
+
+    # then in u18 vbox vm, type some characters in the shell
+    # observe the output from tcpdump
+}

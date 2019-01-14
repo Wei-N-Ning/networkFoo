@@ -14,6 +14,13 @@ function run() {
     rsync -ave ssh /tmp/proj wein@107.170.4.117:/tmp/proj
 }
 
+test_on_mac() {
+    #                                            ________ this directory MUST exist in dest
+    rsync -ave ssh <full path to networkFoo> u18:/tmp/sut
+    #              ^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^
+    #                    source directory    ssh config entry
+}
+
 createMockDirTree
 run
 
