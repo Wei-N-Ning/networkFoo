@@ -7,6 +7,9 @@
 
 listSshAgentPids() {
     ps -ALL | grep ssh-agent | awk -c 'NF > 2 && /^[ 0-9]+/ { print $1 }'
+
+    # this:
+    ps aux | perl -lne '/(\/|\s+)ssh-agent/ && print $_'
 }
 
 getParentPid() {
