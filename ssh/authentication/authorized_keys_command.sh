@@ -2,6 +2,11 @@
 
 # read:
 # https://medium.com/@jryancanty/just-in-time-ssh-provisioning-7b20d9736a07
+: '
+- manually update ~/.ssh/authorized_keys in VM for every user is NOT cool
+- using Chef and explicity deployment pipeline leaves security gap
+'
+
 # https://gist.github.com/sivel/c68f601137ef9063efd7
 
 # https://man.openbsd.org/sshd_config
