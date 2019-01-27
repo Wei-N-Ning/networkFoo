@@ -8,5 +8,7 @@ copy_file_to_server() {
 }
 
 copy_dir_toserver() {
+    # scp is a drop-in replacement for cp and rcp
+    # -r
     scp -i keyfile -r dirpath user@...:'${USER}/asd'
 }
