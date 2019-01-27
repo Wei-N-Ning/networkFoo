@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
+
+PermitRootLogin no
+
+# not just prohibit-password, but no direct login at all
+
 
 # disable root user login is to avoid brutal-force 
 # attack on known account;
