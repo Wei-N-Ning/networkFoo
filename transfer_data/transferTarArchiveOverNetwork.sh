@@ -5,7 +5,7 @@
 # the receiving end recreates the directory tree
 
 STMP=${TMPDIR:-/tmp}/sut
-TESTFILE=$( dirname ${0} )/../dd.tar
+TESTFILE=$( dirname ${0} )/dd.tar
 
 tearDown() {
     rm -rf ${STMP}

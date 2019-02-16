@@ -21,3 +21,10 @@ netstat -lnp 2>/dev/null
 # sudo netstat -tulpn 
 netstat -tulpn
 
+# 
+lsof -i tcp:80
+
+# source
+# https://www.cyberciti.biz/faq/what-process-has-open-linux-port/
+fuser 7000/tcp 2>/dev/null
+
