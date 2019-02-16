@@ -6,6 +6,9 @@
 # motivation:
 # websocket basic concept; how to communicate
 
+# see also
+# http://www.thenerdary.net/post/24889968081/debugging-websockets-with-curl
+
 curl_websocket() {
     curl --include \
         --no-buffer \
@@ -17,3 +20,4 @@ curl_websocket() {
         --header "Sec-WebSocket-Version: 13" \
         http://example.com:80/
 }
+
