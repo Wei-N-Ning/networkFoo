@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-# python websocket library
-# source
-# https://stackoverflow.com/questions/3142705/is-there-a-websocket-client-implemented-for-python
-
-# library document
-# https://websockets.readthedocs.io/en/stable/intro.html
+# mentions: autobahn
+# https://github.com/crossbario/autobahn-python
+# https://crossbar.io/autobahn/
+# is based on twisted; has good support for XMPP
 
 
 # see also
