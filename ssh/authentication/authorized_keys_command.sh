@@ -31,6 +31,9 @@
 # NOTE: the user must both exist in the host OS and has the privilege 
 # to interface with external system (such as AWS) to retrieve the 
 # public keys
+# for example, it is hardcoded to "iam" at CA, which is a user exists
+# in AWS and has access to EVERYONE's public keys
+#
 
 # //////// Better SSH Authorized Keys Management ////////
 # https://gist.github.com/sivel/c68f601137ef9063efd7
