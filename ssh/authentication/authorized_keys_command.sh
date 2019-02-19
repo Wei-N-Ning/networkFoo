@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# read:
+# //////// the benefit of using authorized keys command ////////
 # https://medium.com/@jryancanty/just-in-time-ssh-provisioning-7b20d9736a07
-: '
-- manually update ~/.ssh/authorized_keys in VM for every user is NOT cool
-- using Chef and explicity deployment pipeline leaves security gap
-'
+# - manually update ~/.ssh/authorized_keys in VM for every user is NOT cool
+# - using Chef and explicity deployment pipeline leaves security gap
+#
+
 # //////// AuthorizedKeysCommand ////////
 
 # Specifies a program to be used to look up the user's public keys.  

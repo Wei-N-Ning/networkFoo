@@ -42,6 +42,13 @@ debugging_naked_sshd() {
     # attempt and exits. 
     # Don't do it in production, run it on an alternate port. 
     
+    # UPDATE:
+    # this is very useful in debugging ssh connection issue at CA:
+    # I can log in to the host first and run this to see how
+    # a visitor is rejected (the reason)
+    # I can also run the debug sshd locally and test the configure
+    # file myself
+
     # server
     /usr/sbin/sshd -f /path/to/conf.test -p 2222 -d
     # to increase the verbosity: try -dd and -ddd
