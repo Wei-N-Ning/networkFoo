@@ -1,0 +1,168 @@
+
+
+networking for systems admins, L207
+
+they are divided into several logical layers for convenience
+and simplicity. Each layer handles a very specific task 
+and usually interacts only with the layers immediately 
+above and below it
+
+when a (network) layer breaks, it takes all the layers above 
+with it. Diagnosing a network problem requires first 
+identifying the lowest layer that has a problem. 
+
+a trouble ticket that says, here's the diagnostic output that shows a layer3 problem, but layer2 works fine, will get a much better response.
+
+the layered network model is often called a network stack or the TCP/IP stack.
+
+
+academic: OSI 7 layer model
+
+modern networks: TCP/IP model
+
+to understand the modern internet-attached network you need only 5 layers:
+physical, datalink, network, transport and application
+    1       2         3           4            5
+
+the physical layer traditional has no intelligence, the datalink layer determines how it is used.
+
+the datalink layer transforms the networks' upper layers into the signals transmitted over the wire; a single lump of datalink data is called a frame.
+# NOTE:
+ethernet belongs to this layer
+see: https://en.wikipedia.org/wiki/Ethernet
+Ethernet provides services up to and including the data link layer.
+
+MAC address: Media Access Control address
+IPv4: MAC, ARP
+IPv4: MAC, ND 
+
+layer 3 (network) maps connectivity between hosts.
+this is where the system answers question: how do I get to this other host? can I get to this other host?
+
+the network layer provides a consistent interface to network programs, so they can use the network over any physical and datalink layers. A single chunk of network data is called a packet.
+
+the internet uses the internet protocol (IP) -> the IP in TCP/IP; 
+
+layer 4 transport, a piece of transport layer data is a segment. 
+3 most common transport layer protocols: ICMP (internet control message proto), TCP (transmission control proto), user datagram proto (UDP)
+
+the next 3 layers are session, presentation and application. 
+
+the session layer: opening, using an closing transport layer connections. 
+
+the presentation layer lets progs exchange data with on another, 
+
+the TCP/IP model calls everything above the transport layer the application layer, 
+including protocols: HTTP, SMTP, LDAP
+
+L270
+your browser takes your request, gets the ip address for the site and asks the operating system for a connection to that IP address on TCP port 80
+
+the transport layer in the operating system kernel takes 
+the request and slices it into chunks small enough to fit 
+inside TCP segments (536 bytes or smaller). It hands these 
+segments down to the network layer.
+
+the network layer only cares about where that segment needs to go. If the network layer knows how to reach the destination address, it wraps
+each segment with IP information to create a packet and hands
+the packet off to the datalink layer.
+
+the datalink layer doesn't know about IP addresses, let alone browsers. It only knows
+how to launch packets at a particular MAC address at the other end of 
+a piece of wire.
+The datalink layer adds information for the physical protocol to the packet,
+creating a frame and sends it across the wire.
+
+the wire carries the frame to the dest, where the target computer trips off the layers, reassembles the request, and hands it 
+upt to the web server. The web server processes the request
+and returns a response, which takes the same journey back.
+
+one of the jobs of a router is to strip a frame's datalink information for one physical layer and add the datalink for a new physical layer before sending on the packet
+
+L280
+Layer, Tools
+1 (phy) link light, ipconfig/ifconfig, cable replacement
+2 (dl)  arp, ND, tcpdump
+3 (nt)  ping, traceroute
+4 (tp)  netstat, netcat, tcpdump
+5+      logs, debuggers
+
+narrow down the problem: the server has a link light on this 
+connection but I'm not getting an ARP reply from the gateway.
+
+L302
+// troubleshooting physical layer //
+
+phy layer offers two troubleshooting interface: interface commands and link lights.
+(disconnected on Windows)
+ifconfig: display link status
+ethtool (linux only): 
+
+always chop a failed cable in half before discarding it.
+
+L323
+// datalink troubleshooting //
+
+arp: lists the other ethernet addresses that your operating
+system sess on the network.
+arp tables only shows ethernet address that should appear on your 
+configured IP address range
+use tcpdump to see what traffic the host receives from the 
+network
+
+// network layer troubleshoot //
+when the network layer fails your host cannot deliver packets
+to hosts beyond the local subnet; use ping and traecroute.
+
+// transport layer troubleshoot //
+netstat to view established connections;
+netcat: to see if you can transmit data to another host
+tcpdump: see if data arrives at your server and verify your host is actually sending data
+
+
+Chapter 2: Ethernet.
+
+L343
+ehternet is a broadcast protocol.... either your network core, the server's network card or the card's device driver 
+separates out data intended for your system from the data
+meant for other systems.
+
+a section of ethernet where all the hosts can communicate directly with 
+each other without involving a route, is called a brodcast domain,
+a segment, or a local area network (LAN)
+
+every device on an ethernet needs a unique identifier, called a MAC address (48 bit long),
+or ethernet address. 
+the first six numbers of the MAC address identifies the ethernet card manufacturer
+
+speed and duplex
+L364
+duplex: how each end handles transmitting and receiving data. An interface
+running at half duplex can either receive or transmit data 
+at any instance but not both. 
+For a connection to work well, both sides must agree on
+speed and duplex. (it won't work if server speaks 1Gbps, 
+but the switch insists on 100Mbps)
+if they disagree on duplex, the connection might appear to 
+work but will lose frames under load.
+
+modern equipment auto-negotiates connection speed and duplex,
+ agreeing on the fastest settings both sides support. 
+
+the protocol speed effectively says both sides speak the same 
+language, but not how fast each side can actually exchange 
+traffic.
+
+what happens when a packet is too large for the datalink layer's frame: it fragments that data into pieces it can manage.
+when the data reachs the destination, the dest system 
+reassembles those fragments into a complete unit.
+fragmentation increases load on both the server and the cl.
+
+MTU: most systems set a maximum transimission unit, the 
+largest size that can fit through the datalink layer.
+older ethernet: 1500 bytes
+100Mbs ethernet: 900-byte jumbo frames
+
+
+
+
