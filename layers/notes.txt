@@ -158,7 +158,7 @@ when the data reachs the destination, the dest system
 reassembles those fragments into a complete unit.
 fragmentation increases load on both the server and the cl.
 
-MTU: most systems set a maximum transimission unit, the 
+MTU: most systems set a Maximum Transimission Unit, the 
 largest size that can fit through the datalink layer.
 older ethernet: 1500 bytes
 100Mbs ethernet: 900-byte jumbo frames

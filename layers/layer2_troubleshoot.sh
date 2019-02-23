@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# LAN: local area network
+
 # how quickly each response came back
 ping_cmd() {
     # example: ping canva.com
@@ -100,9 +102,78 @@ arp_cmd() {
     # ip-10-0-0-1.ec2.internal (10.0.0.1) at 02:29:0b:d9:d9:3c [ether] on ens5
 }
 
+ND() {
+    # similar to arp, map MAC addresses to IPv6 addresses
+    # linux: 
+    ip -6 neigh show
+    # NOTE:
+    # tested in CA dev.jump host, it didn't show nothing
+}
 
+VLAN() {
+    # virtual LANS
+    # is an extra tag on ethernet frames indicating that 
+    # they belong on a different LAN than  the default
+    # ethernet frames that arrive at your network card
+    # without this tag belong in the default LAN 
+    # these tags let you put multiple VLANS on a single
+    # physical wire
+    # an interface like eth0:1 on linux
+    :
+}
 
+datalink_errors() {
+    # the error ocunts on both unix and windows systems
+    # are totals since the system booted
+    # if you see an error count, that does not mean that the
+    # syste, is currently having errors
+    # when you see errors on an interface, determine if thay
+    # are increasing or constant
+    # NOTE:
+    # one linux I can use watch command
+    # on mac I need to brew install watch
+    
+    # on CA dev.jump host
+    netstat -i
+    # Kernel Interface table
+    # Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+    # ens5       9001 0   5095970      0      0 0       4479171      0      0      0 BMRU
+    # lo        65536 0        34      0      0 0            34      0      0      0 LRU
 
-
+    # on CA macbook pro
+    netstat -i
+    # Name  Mtu   Network       Address            Ipkts Ierrs    Opkts Oerrs  Coll
+    # lo0   16384 <Link#1>                        556738     0   556738     0     0
+    # lo0   16384 127           localhost         556738     -   556738     -     -
+    # lo0   16384 localhost   ::1                 556738     -   556738     -     -
+    # lo0   16384 fe80::1%lo0 fe80:1::1           556738     -   556738     -     -
+    # gif0* 1280  <Link#2>                             0     0        0     0     0
+    # stf0* 1280  <Link#3>                             0     0        0     0     0
+    # VHC12 0     <Link#4>                             0     0        0     0     0
+    # XHC20 0     <Link#5>                             0     0        0     0     0
+    # XHC1* 0     <Link#6>                             0     0        0     0     0
+    # XHC0* 0     <Link#7>                             0     0        0     0     0
+    # ap1*  1500  <Link#9>    f2:18:98:1c:c4:86        0     0        0     0     0
+    # en0   1500  <Link#10>   f0:18:98:1c:c4:86 52570808     0 24576742 20133     0
+    # en0   1500  bfg9000.loc fe80:a::1c32:30fb 52570808     - 24576742     -     -
+    # en0   1500  192.168.0     192.168.0.14    52570808     - 24576742     -     -
+    # p2p0  2304  <Link#11>   02:18:98:1c:c4:86        0     0        0     0     0
+    # awdl0 1484  <Link#12>   3e:d2:af:01:95:e6    87436     0    22969     0     0
+    # awdl0 1484  bfg9000.loc fe80:c::3cd2:afff    87436     -    22969     -     -
+    # en1   1500  <Link#13>   06:00:90:d2:27:01        0     0        0     0     0
+    # en2   1500  <Link#14>   06:00:90:d2:27:00        0     0        0     0     0
+    # en3   1500  <Link#15>   06:00:90:d2:27:05        0     0        0     0     0
+    # en4   1500  <Link#16>   06:00:90:d2:27:04        0     0        0     0     0
+    # bridg 1500  <Link#17>   06:00:90:d2:27:01        0     0        1     0     0
+    # utun0 2000  <Link#18>                            0     0        2     0     0
+    # utun0 2000  fe80::725c: fe80:12::725c:881        0     -        2     -     -
+    # utun1 1380  <Link#19>                         5632     0     6583     0     0
+    # utun1 1380  fe80::d9ef: fe80:13::d9ef:d85     5632     -     6583     -     -
+    # utun2 1380  <Link#20>                         9182     0    10139     0     0
+    # utun2 1380  fe80::b894: fe80:14::b894:492     9182     -    10139     -     -
+    # en5   1500  <Link#8>    ac:de:48:00:11:22    23944     0    18041  3963     0
+    # en5   1500  fe80::aede: fe80:8::aede:48ff    23944     -    18041     -     -
+    :
+}
 
 
