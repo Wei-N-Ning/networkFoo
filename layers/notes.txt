@@ -294,6 +294,23 @@ is not really a stream: it is a whole bunch of independent
 packets that just happen to be travelling in the same 
 direction. 
 
+L1034
+three way handshake (on connection)
+> one host requests a connection
+> dest host either accepts, rejects or ignores the req
+> if dest accepts, it sends back info on how to connect
+> when the first host acknowledges the receipt of that info,
+it can start transmitting data
+
+four way handshake (on teardown)
+
+sockets
+L1107
+a socket is a communication endpoint for a process 
+it is a virtual construction for plugging communication into.
+
+tcp connection state
+L1137
 
 
 
