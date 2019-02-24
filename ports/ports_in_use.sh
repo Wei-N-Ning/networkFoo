@@ -38,7 +38,13 @@ all_ports_in_use() {
     netstat -atn
 
     # -n: to speed things up
-    # not running ip address (hostname) resolution
+    # see: L1181
+    # not running reverse DNS lookup on every IP address
+    # on a busy server this might mean hundreds or thousands of lookups
+    # many hosts have no reverse DNS, so these lookups can take a 
+    # quite long time before they fail
+    # "I recommend almost always using -n"
+
     # this works on linux (CA dev.jump, ubuntu) and (CA
     # macbook pro)
     netstat -an

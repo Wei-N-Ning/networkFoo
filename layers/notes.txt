@@ -303,6 +303,15 @@ three way handshake (on connection)
 it can start transmitting data
 
 four way handshake (on teardown)
+L1148
+CLOSE_WAIT
+TIME_WAIT
+FIN_WAIT_2
+LAST_ACK
+
+# NOTE:
+the three way and four way teardown handshake status can show up 
+in the output of netstat 
 
 sockets
 L1107
