@@ -158,10 +158,146 @@ when the data reachs the destination, the dest system
 reassembles those fragments into a complete unit.
 fragmentation increases load on both the server and the cl.
 
-MTU: most systems set a Maximum Transimission Unit, the 
+MTU: most systems set a /Maximum Transimission Unit/, the 
 largest size that can fit through the datalink layer.
 older ethernet: 1500 bytes
-100Mbs ethernet: 900-byte jumbo frames
+100Mbs ethernet: 9001-byte jumbo frames
+# NOTE: observe the MTU value on CA's dev.jump host, which is 9001
+
+
+Chapter 3: IPv4
+
+L624
+to connect a host to a network it needs a valid IP address 
+and a subnet mask.
+if it needs to communicate with hosts beyond the local network, 
+it needs a default gateway.
+knowing the addresses of your DNS servers is a definite 
+plus
+
+L654
+length in bits: a netmask is the number of fixed bits in the 
+local network. 
+A/25 network has 25 fixed bits.
+
+CIDR: classless inter-domain routing
+/24 255.255.255.0
+
+# bits	# hosts	Usable 
+hosts	netmask	Cisco mask
+/4	268435456	268435454	240.0.0.0	15.255.255.255
+/5	134217728	134217726	248.0.0.0	7.255.255.255
+/6	67108864	67108862	252.0.0.0	3.255.255.255
+/7	33554432	33554430	254.0.0.0	1.255.255.255
+/8	16777216	16777214	255.0.0.0	class A network	0.255.255.255
+/9	8388608	8388606	255.128.0.0	0.127.255.255
+/10	4194304	4194302	255.192.0.0	0.63.255.255
+/11	2097152	2097150	255.224.0.0	0.31.255.255
+/12	1048576	1048574	255.240.0.0	0.15.255.255
+/13	524288	524286	255.248.0.0	0.7.255.255
+/14	262144	262142	255.252.0.0	0.3.255.255
+/15	131072	131070	255.254.0.0	0.1.255.255
+/16	65536	65534	255.255.0.0	class B network	0.0.255.255
+/17	32768	32766	255.255.128.0	0.0.127.255
+/18	16384	16382	255.255.192.0	0.0.63.255
+/19	8192	8190	255.255.224.0	0.0.31.255
+/20	4096	4094	255.255.240.0	0.0.15.255
+/21	2048	2046	255.255.248.0	0.0.7.255
+/22	1024	1022	255.255.252.0	0.0.3.255
+/23	512	510	255.255.254.0	0.0.1.255
+/24	256	254	255.255.255.0	class C network	0.0.0.255
+/25	128	126	255.255.255.128	0.0.0.127
+/26	64	62	255.255.255.192	0.0.0.63
+/27	32	30	255.255.255.224	0.0.0.31
+/28	16	14	255.255.255.240	0.0.0.15
+/29	8	6	255.255.255.248	0.0.0.7
+/30	4	2	255.255.255.252	0.0.0.3
+/31	 	point to point links only
+/32	1	1	255.255.255.255	single IP address	use host notation
+
+the loopback interface does not have an underlying layer 2
+as it is a pure software interface. 
+# NOTE:
+run nc -l -u 192.168.0.14 32345
+and nc -l -u localhost 32345 
+observe the open file list:
+lsof -p <pid>
+the first form accepts remote connection;
+the second form only accepts local/lo connection;
+in comparison, running the perl oneliner UDP server, it 
+accepts any addresses on the host:
+perl5.18 81226 weining    3u  IPv4 0x7993effe0b4c8565        0t0     UDP *:32345
+therefore it receives text sent to both localhost and the 
+local subnet address
+
+private addresses and NAT
+you can't just grab random addresses for your private network, 
+your random addresses are probably in use elsewhere on the 
+internet, and if you use them on your private network you 
+won't be able to communicate with that remote network.
+
+various internet bodies have set aside three subnets for 
+use on private networks.
+you can not use them on the public internet, but anybody 
+can use them on a private network.
+10.0.0.0/8
+172.16.0.0/12
+192.168.0.0/16
+
+L831
+Network Address Translation: NAT, rewrites packets in flight, 
+when a host with a private IP addresses sends traffic through 
+a NAT device, the NAT device rewrites the outbound traffic 
+so that it appears to be coming from the NAT device device's public IP address 
+When the remote site answers, the NAT device rewrites the 
+response so that it goes to the original client.
+the NAT device maintains a table of connections, and tracks 
+the state of each connection so that it can properly open 
+and close connections as needed. 
+Most home routers are NAT devices.
+
+A firewall is most often som combination of packet filter, 
+proxy server and NAT. 
+
+Proxies, NAT devices and firewalls are not "Internet security
+systems". They are components in an organization's security 
+policy, but the devices on their own are merely points of 
+policy enforcement.
+
+The practice of network security monitoring
+The tao of network security monitoring
+Extrusion detection 
+
+
+Chapter 4: IPv6
+
+L862
+ARIN: American Registry for internet numbers
+
+
+Chapter 5: TCP/IP
+
+L993
+the word segment isn't used very often,
+instead you will see references to a UDP or TCP package, which 
+means an individual segment wrapped in an IP packet.
+
+the IP packet contains vital information, like the source and 
+destination IP addresses. Think of a segment like a fast-food 
+hamburger in wax paper. IF a cashier dropped a fresh hot 
+burger, unwrapped, straight in your hand, you'd consider it 
+incomplete.
+
+L1013
+UDP is called connectionless because a UDP data "stream"
+is not really a stream: it is a whole bunch of independent 
+packets that just happen to be travelling in the same 
+direction. 
+
+
+
+
+
 
 
 
