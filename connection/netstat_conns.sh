@@ -47,7 +47,8 @@ show_only_tcp_connections() {
 
 show_prog_listening_on_port() {
     # tested on both ubuntu (CA dev.jump) and macbook pro
-    # -i: see all network ports in use
+    # -i: see all network ports in use (need sudo to 
+    #     see the privileged processes)
     # -n: no DNS reverse resolution
     sudo lsof -n -i
 }
