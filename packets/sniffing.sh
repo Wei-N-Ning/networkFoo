@@ -25,6 +25,25 @@
 # code in privilege mode. Tcpdump exploit traffic is almost
 # unknown outside the lab in any event.
 
+# L1888
+# you try to connect to a network service from your desktop and nothing
+# happends, 
+# - has the server process hung ?
+# - is the client traffic even reaching the server?
+# 
+# when you connect to a network socket, the operating system kernel 
+# sets up the connection; once it has a complete connection, it hands 
+# the incoming data stream to the server program
 
+# say you have an SSH server listening on TCP port 22, the operating 
+# system knows that port 22 is open and attached to the SSH daemon,
+# a request arrives for port 22. The operating system performs the TCP
+# three-way handshake. Only where there is a working connection 
+# does the kenerl poke the SSH daemon and say, hi this data stream is 
+# for you. 
 
+# //// if a client can set up a three-way handshake, but never actually 
+# //// connects, it is probably the server program.
+# //// if there is no three-way handshake, there operating system didn't
+# //// complete the connection
 
