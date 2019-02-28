@@ -19,4 +19,24 @@ connect_to_http_server() {
     nc -v localhost 9000
     # monitor
     tcpdump -ni lo0 ip
+
+    # use the HTTP verbs:
+    # found 0 associations
+    # found 1 connections:
+    #      1:	flags=82<CONNECTED,PREFERRED>
+    # 	outif en0
+    # 	src 10.0.1.67 port 61680
+    # 	dst 172.217.25.46 port 80
+    # 	rank info not available
+    # 	TCP aux info available
+
+    # Connection to google.com port 80 [tcp/http] succeeded!
+    # GET / HTTP/1.1
+    # host:google.com
+    GET / HTTP/1.1
+    host: www.google.com
+    # double enter 
+
 }
+
+
