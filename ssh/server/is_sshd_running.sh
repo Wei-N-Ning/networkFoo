@@ -22,6 +22,11 @@ nc_query() {
 
     # on mac the sshd is by default not running,
     # unless turned on in Sharing dialog
+
+    # more realistic examples:
+    # 13.236.135.223 is the public IP of an EC2
+    # this tests that port 22 is open
+    nc -v 13.236.135.223 22
 }
 
 

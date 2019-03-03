@@ -34,6 +34,10 @@ run_naked_sshd() {
     ps ax | grep -i sshd
 }
 
+listen_to_multiple_ports() {
+    sudo /usr/sbin/sshd -p 2222 -p 3333 -d
+}
+
 debugging_naked_sshd() {
     # -d flag tells sshd to run in fg debugging mode without 
     # detaching from the controlling terminal
