@@ -33,6 +33,10 @@ uninstall() {
 # show up in sshd debug messages;
 # outputs from ~/.ssh/rc on the other hand do show up on the
 # caller's side (not server side) 
+
+# observation shows that the files created by sshrc and rc 
+# are owned by user wein, confirming that both init scripts
+# are executed by the said user.
 install_etc_ssh_sshrc() {
     sudo su
     install_rc_script "/etc/ssh/sshrc"
