@@ -26,6 +26,12 @@ establish_ssh_forwarding() {
     # -N: do not run command - this is necessary for me and without this 
     #     ssh goes ahead logging into the VM instead of listening for conns
     # -L: the forwarding argument
+
+    # SSH definitive 2nd P/224
+    # no restrictions are imposed on the listening port for 
+    # local forwardings (32145 in this case)
+    # SSH server has no reason to care about that, and no 
+    # way to verify it anyway
     ssh -A -N -L 32145:10.0.1.201:22 ubuntu@13.211.3.235
 
     # this command should not return
