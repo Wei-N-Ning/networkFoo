@@ -1,0 +1,21 @@
+
+SSH definitive 2nd P/369
+for complete application level transparency, you need a network-
+level technique, such as IPSEC or a VPN in host software or dedicated 
+routers.
+
+while VPN provide a more complete solution, they require signifcantly
+more work and expense to set up compared to SSH forwarding.
+
+/////////
+SSH forwarding techniques are to allow otherwise prohibited traffic 
+across firewalls
+the firewall prevents unauthorized traffic, while ssh forwarding allows
+authorized users to bypass the restriction
+don't forget you are bypassing a security restriction that is in place 
+for a reason
+just because you can do something does not automatically mean that it is 
+a good idea.
+//////////
+
+
