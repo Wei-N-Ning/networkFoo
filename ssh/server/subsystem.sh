@@ -14,3 +14,23 @@ say $fh $text;'
 EOF
     chmod a+x /var/tmp/thereisacow
 }
+
+define_subsystem_in_conf() {
+    : <<"TEXT"
+115 Subsystem   sftp    /usr/lib/openssh/sftp-server
+116 Subsystem   thereisacow /var/tmp/thereisacow
+117 AcceptEnv SUBSYSTEM_ARGS
+TEXT
+    # client then use SUBSYSTEM_ARGS to pass argument to the subsystem
+    # SSH defintive 2nd P/331
+    # /////////
+    # open ssh uses the remote command as the subsystem name: 
+    # this must be specified last on the ssh command line
+    # /////////
+    SUBSYSTEM_ARGS='{"a": 123}' \
+    ssh -s -o 'SendEnv=SUBSYSTEM_ARGS' h6 thereisacow
+
+    # the content of the argument can be protected by base64
+
+}
+
