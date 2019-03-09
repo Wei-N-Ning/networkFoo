@@ -57,6 +57,19 @@ doTransfer() {
     sleep 0.1
     tar -czf - ${STMP}/* | nc 127.0.0.1 9988
     wait
+
+
+    # UPDATE: more clarity 
+    # sender should do:
+    # - make sure ephemeral ports can be used in NACL 
+    # - cd into the containing directory of the package directory
+    tar -czf - 'package' | nc host port 
+
+    # receiver should do:
+    # - make sure <port> can be used in NACL
+    # - cd into the containing directory where package is dispatched
+    nc -l host port | tar xzvf - --directory .
+    
 }
 
 setUp
