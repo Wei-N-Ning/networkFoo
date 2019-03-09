@@ -13,6 +13,5 @@ enforce_perm() {
 }
 
 upload_pubkey() {
-    cat .ssh/id_rsa.pub | \
-        ssh '<username>@<address>' 'cat >>~/.ssh/authorized_keys'
+    cat .ssh/id_rsa.pub | ssh '<username>@<address>' 'cat >>~/.ssh/authorized_keys'
 }

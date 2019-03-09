@@ -1,5 +1,8 @@
 username: verity chu
 
+public key:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjTCUEzL8D/M38PX6ttkf+9jd62RxYg220BNjqHIbaylJcIQEk4ZNlRtLYGXBuiAGOq1VQOM0BDv2ib6Opn0oFrpPwuip4UEizdirxyy+LqRZtyxOlZKJfqduQ7WjewyB7zbtPmhrhuuBwJpXr1nucMfsICOYHqjsyh0wxT4SvJEpHuMB2tsS7gamzPPN76K/ZncPBN9qqRoTtnqql1eszlzYDjbgHb5VdPZ7ffsR6K/D3tUbURQSSz1gvOQSWNgU5062jl4SS3+3nCvRLKR2QO8ULeHeRQKxCc9uks9YgZ9OWYDrB75uqG0M7kYUuhU5Pfriz1+Z9vhct/F95DRNhYYBXkSYQaFam8VoULJEs5D9CszAxQ2RJT8aKNHnTx07kwHTn8271MAwbHR3kiZv3KoiHVnc6KnsGJtrZUqrvqTaBWZiIylPji+xqSAnuwDlxrujFO9OlxFUOojAfnbLX7uGeALQgga692l9UrBQq1CZyepIdXNwW2UNXWxpIzy2n6xeUJce7wecu/YMKQ+kWEtgKD+ZzkEgjn2JQZwxoYI0xNj30+PzqAZO4M7hYFkA2zXvdrNEt8J9m6jDvXt66154sod9i8FdHguCGiMQTroIph5NZ1yh5gaWQW8xMBEl8zO127GbF6Ozmq/iHjSBQOP1kIDzXKdxUM1BOCuwECQ==
+
 (venv) weining@BFG9000: ~$ perl -MIO=Socket -Mstrict -w -E 'my $sock=IO::Socket::INET->new(Proto=>"udp",LocalPort=>32345)||die "";while($sock->recv(my $newmsg, 4096)){say ": $newmsg";}'
 : -----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
