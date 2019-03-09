@@ -49,4 +49,10 @@ print_key_fingerprint() {
     # they should look identical
 }
 
+specify_identity_file() {
+    # SSH definitive 2nd P/281
+    # -i or IdentityFile in client conf
+    # ssh/scp -i 'filename'
+    :
+}
 
