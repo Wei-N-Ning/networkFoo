@@ -1,5 +1,38 @@
 #!/usr/bin/env bash
 
+# UPDATE: SSH definitive 2nd P352/372
+: <<"TEXT"
+IMAP uses tcp port 143; this means that an IMAP server listens for 
+connections on port 143 on the server machine
+
+To tunnel the IMAP connection through SSH, we need to pick a local 
+port on home machine H (1024-65535) and forward it to the remote 
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+socket (S,143)
+
+ssh -L2001:localhost:143 S
+                         ^ remote ip
+-L specifies local forwarding, in which tcp client is on the local 
+machine with the ssh client
+
+this logs you into s, just like `ssh S` does, 
+however this ssh session has also forwarded tcp port 2001 on H to 
+port 143 on S, 
+the forwarding remains in effect until you log out of the session
+to make use of the tunnel, the final step is to tell your email 
+reader to use the forwarded port (2001)
+normally your email program connects to port 143 on the server machine
+- that is the socket (S,143). Instead it is configured to connect to
+port 2001 on home machine H itself, i.e socket (localhost,2001)
+
+you can also use 
+
+ssh -L 2001:S:143 S
+
+substituting S for localhost (but localhost is considered better 
+when possible)
+TEXT
+
 # motivation
 # simulate a jump/bastion server setup
 # pub --(ssh)--> bastion --(ssh)-> VM

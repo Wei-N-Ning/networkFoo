@@ -18,4 +18,32 @@ just because you can do something does not automatically mean that it is
 a good idea.
 //////////
 
+what is forwarding
+^^^^^^^^^^^^^^^^^^
+is a type of interaction with another network application
+ssh intercepts a service request from some other program on one side 
+of an ssh connection, sends it across the encrypted connection and 
+delivers it to the intended recipient on the other side
+this process is mostly transparent to both sides of the ocnnection:
+each believes it is talking directly to its partner and has no knowledge 
+that forwarding is taking place.
+
+the paradiagm of agent forwarding holds treu for TCP port forwarding 
+and X forwarding, as the ssh server transparently masquerades as 
+another network application.
+
+SSH definitive 2nd P/371
+port forwarding is sometimes called tunneling because the SSH connection 
+provides a secure tunnel through which another tcp/ip connection may 
+pass.
+
+with ssh port forwarding, you can transparently reroute the connection 
+found on server S's tcp port xx to pass through ssh, securely 
+encrypting the data over the connection. 
+the server machine must be running an ssh server for port forwarding 
+to provide real protection.
+
+ssh port fowarding protects arbitrary tcp ip connections by redirecting 
+them through an ssh session
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
