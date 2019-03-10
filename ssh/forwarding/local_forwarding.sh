@@ -31,7 +31,66 @@ ssh -L 2001:S:143 S
 
 substituting S for localhost (but localhost is considered better 
 when possible)
+
+/// the path of the connection follows:
+1. email reader on home machine H sends data to local port 2001
+2. the local ssh client on H reads port 2001, encrypts the data 
+    and sends it through the ssh connection to the ssh server on S
+3. the ssh server on S decrypts the data and sends it to the IMAP
+    server listening on port 143 on S
+4. data is sent back from IMAP server to home machine H by the same 
+    process in reverse
+
+SSH definitive 2nd P/374
+in most cases neither the client nor the server cares which source 
+port number is used by the client. Often a client lets TCP select 
+an unused port number for the source
+if you examine the existing TCP connections on a machine with a command 
+liek netstat -a or lsof -i tcp
+you will see connections to the well-known port numbers for common
+services with large apparently random source port numbers on the other 
+end. Those source ports were chosen from the range of unassigned ports 
+by TCP on the machines initiating the connections.
+
+
 TEXT
+
+use_local_forward_client_conf() {
+    # LocalForward 2001 localhost:143
+    #                   ^^^^^^^^^^^^^ remote socket
+    # there are two arguments: the local port and 
+    # the remote socket expressed as host:port
+    #  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    :
+}
+
+localhost_restriction_and_g() {
+    # SSH definitive P/375
+    # //// IMPROTANT: it got me in the first place ////
+
+    # In open ssh, by default only the host running the ssh client 
+    # can connect to locally forwarded ports
+    # this is because ssh listens only on the machine's loopback
+    # interface for connections to the forwarded port
+    # this is it binds the socket (localhost,2001), aka (127.0.0.1,2001)
+    # therefore only machine H can use the forwarding; 
+    # attempts by other machines to connect to (H,2001) get the 
+    # message "connection refused"
+
+    # open ssh has -g that disables this restriction, permitting
+    # any host to connect to locally forwarded ports
+
+    ssh -g -L...
+
+    # h6:8080 forwarded to h7:9080 (which runs an http server)
+    # without -g, laptop can not connect to the http server via
+    # http://192.168.0.6:8080
+
+    # client config:
+    # note this has security risk!
+    GatewayPorts yes
+}
+
 
 # motivation
 # simulate a jump/bastion server setup
