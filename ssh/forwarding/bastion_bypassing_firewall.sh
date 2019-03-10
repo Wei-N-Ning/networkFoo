@@ -107,7 +107,30 @@ bastion_techniques_oneshot() {
     # ssh waits until that connection ends, and then terminates
     # providing the behavior of one-shot forwarding
     ssh -f -L 2222:192.168.0.7:22 wein@192.168.0.6 sleep 5
-
 }
 
+exercise_CA_dev_solr() {
+    # use CA dev environment
+    # dev.jump: bastion, has my public key
+    # dev.solr6.0: corp instance, does not have my public key
+    
+    # inject my pub key on corp instance under user ubuntu
+    # this uses the existing infra-ssh mechanism
+
+    # create tunnel
+    ssh -N -L 2222:10.0.10.106:22 wei@ec2-18-213-29-236.compute-1.amazonaws.com
+    #       lo port   pri ip       authentication method on bastion
+    ssh -f -L 2222:10.0.10.106:22 wei@ec2-18-213-29-236.compute-1.amazonaws.com sleep 5
+    # this also works, and the process terminates gracefully
+    # after I log off the corp instance
+
+    # delete all localhost entries in my local known hosts file
+    ssh ubuntu@localhost -p 2222
+    # it works because my identity (my default keypair) matches 
+    # one in the authorized_keys under ubuntu user
+
+    # delete my pub key, leave no trace
+    ssh ubuntu@localhost -p 2222
+    # will reject as public key is denied 
+}
 
