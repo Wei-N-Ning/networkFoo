@@ -31,6 +31,20 @@ ssh -L 2001:S:143 S
 
 substituting S for localhost (but localhost is considered better 
 when possible)
+# UPDATE P/388
+# S vs localhost:
+# in either case the connection stays on the remote machine and 
+# does not go over the network.
+# the source sockets of the connections are different
+# the connection to localhost appears to come from (127.0.0.1,P)
+# whereas the connection to S is from the address associated with
+# that name.
+# the application server might be doing ACL, based on source address
+# and may not accept loopback address
+# netstat -a -n should list all the network connections and
+# listeners on that machine
+# look for listeners on the relevant port and the addresses on 
+# which they are listening
 
 /// the path of the connection follows:
 1. email reader on home machine H sends data to local port 2001
@@ -64,7 +78,7 @@ use_local_forward_client_conf() {
     :
 }
 
-localhost_restriction_and_g() {
+local_forwarding_and_gateway_ports() {
     # SSH definitive P/375
     # //// IMPROTANT: it got me in the first place ////
 
