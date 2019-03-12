@@ -4,6 +4,10 @@
 # observe connection using netstat
 
 get_dest_public_address() {
+    # recap in SSH definitive 2nd, P/389
+    # netstat -a -n should all the network connections and listeners
+    # on that machine
+
     # run CA's 
     infra ssh dev.jump 
     # then 
