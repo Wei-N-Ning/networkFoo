@@ -2,6 +2,9 @@
 
 # SSH definitive 2nd P/349
 anatomy_authorization_file() {
+    # ==recommended==
+    # use from option to restrict the access to trusted sources
+    # 
     : <<"TEXT"
 from="host.address" ssh-rsa "public key" "comment"
 a set of opts         type    value        comment
