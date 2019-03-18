@@ -61,3 +61,13 @@ there can be also be multiple patterns, separated by commas
 from="!saruman.ring.org,*.ring.org"
 TEXT
 }
+
+idle_timeout() {
+    # SSH definitive 2nd P/519
+    # I get prompted for my password or passphrase, but before
+    # I have time to respond the ssh server closes the conn
+    
+    # your server's idle timeout may be too short
+    # openssh: idletimeout=100
+    :
+}
