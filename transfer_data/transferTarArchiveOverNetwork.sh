@@ -51,6 +51,10 @@ generateData() {
 # tar -czf - /directory/to/archive/* | wc
 # or
 # tar -czf - /directory/to/archive/* >/output/file/path
+
+# recap in SSH definitive 2nd P/531
+# scp -p/-r does not preserver file ownership, use tar or rsync
+# instead
 doTransfer() {
     cd ${HOME}
     nc -l 127.0.0.1 9988 | tar xzvf - --directory ${STMP} &
