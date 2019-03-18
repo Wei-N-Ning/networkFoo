@@ -42,6 +42,8 @@ launch_shell_with_agent() {
     # /////////////////////////////////////////////////
     # NOTE: your login shell becomes dependent on the agent's health
     # if the agent dies, you login shell may die
+
+    # recapped in SSH definitive 2nd P/525, QA
     ssh-agent "${SHELL}"
 }
 
