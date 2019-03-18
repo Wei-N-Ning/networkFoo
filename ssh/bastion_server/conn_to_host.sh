@@ -3,6 +3,11 @@
 # SSH definitive 2nd P/466
 
 : <<"TEXT"
+Comparison of different bastion/gateway techniques
+
+TEXT
+
+: <<"TEXT"
 suppose your commpany has a gateway host G, which is your only 
 gateway to the internet. you are logged into a client host C and 
 want to reach a server host S outside the company network.
