@@ -195,9 +195,11 @@ with_port_forwarding() {
     # 2222:10.0.9.58:22 ***MUST NOT*** be written as
     # 2222:ubuntu@10.0.9.58:22
     # the username information is not part of the forwarding 
-    # setup as ssh does not care about that; it will complain
+    # setup as ssh does not care about that; sshd will complain
     # about the host name ubuntu@10.0.9.58 but this message is 
-    # only shown in debug-verbose mode (-ddd)
+    # only shown in debug-verbose mode (-ddd, -d3 or -d5)
+    # note that the client side -vvv can be helpful BUT not in 
+    # this case; it does not know why server rejects the req
     # the username should be provided to the connecting command 
     # as shown above
 
