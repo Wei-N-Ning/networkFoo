@@ -218,4 +218,13 @@ with_port_forwarding() {
     # note that I also use -A for establishing forwarding, this 
     # is to pass the test on the jump host, if I don't use 
     # my default keypair
+
+    # the same forwarding technique works for other connection
+    # types (such https)
+    # for example this establishes a tunnel to a private 
+    # instance that runs solr6 server,
+    # once established, one can log on to the solr admin page 
+    # in a browser via localhost:2222
+    # note again the port:host:port syntax (no username!!)
+    ssh -N -A -L 2222:10.0.9.58:8983 wei@34.234.15.97
 }
