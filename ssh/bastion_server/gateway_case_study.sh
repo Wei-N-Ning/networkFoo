@@ -5,6 +5,29 @@
 : <<"TEXT"
 Comparison of different bastion/gateway techniques
 
+Smoothness:
++ the tunneling methods are smoother end to end
+this is especially true if you need to request additional 
+services via ssh, such as any kind of forwarding...
+- the setup for tunneled connections using port forwarding
+is more cumbersome with its extra ssh process
+
++ proxy command tunneling is both smoother than chaining 
+and at least no slower
+
+Security
+a chained connection has a serious security problem: 
+- the gateway G , all data is decrypted on G in between the 
+two SSH sessions; if G is compromised all is lost
+- there is no end to end security in this scenario, because 
+there is no actual ssh session from client C to server S
++ a compromised G poses no extra threat to the security of a 
+tunneled ssh connection from C to S; the break-in simply puts 
+the attacker on G in the possition of altering or diverting the 
+data path between C and S - but SSH already has mechanism for 
+countering exactly that threat. In other words, the top SSH
+connection does not trust the lower one at all.
+
 TEXT
 
 : <<"TEXT"
@@ -161,3 +184,36 @@ with_proxy_command() {
     # or parameter store in CN regions
 }
 
+with_port_forwarding() {
+    # process to establish forwarding:
+    ssh -N -A -L 2222:10.0.9.58:22 wei@34.234.15.97
+
+    # procees to connect to the forwarded local port
+    ssh -A -o UserKnownHostsFile=/dev/null ubuntu@localhost -p 2222
+    
+    # gotcha 1:
+    # 2222:10.0.9.58:22 ***MUST NOT*** be written as
+    # 2222:ubuntu@10.0.9.58:22
+    # the username information is not part of the forwarding 
+    # setup as ssh does not care about that; it will complain
+    # about the host name ubuntu@10.0.9.58 but this message is 
+    # only shown in debug-verbose mode (-ddd)
+    # the username should be provided to the connecting command 
+    # as shown above
+
+    # gotcha 2:
+    # because localhost likely exists in user's known host file
+    # and because my ssh client is likely running in strict mode 
+    # therefore connection will fail with the follow error 
+    # REMOTE HOST IDENTIFICATION HAS CHANGED!
+    # the work around is to 1) delete the localhost entry 2)
+    # tell ssh client not to save this entry any more, hence
+    # the argument -o UserKnownHostsFile=/dev/null
+
+    # gotcha 3:
+    # I will be interrogated by the destination host for keypair,
+    # make sure the connecting command use agent forwarding (-A)
+    # note that I also use -A for establishing forwarding, this 
+    # is to pass the test on the jump host, if I don't use 
+    # my default keypair
+}
