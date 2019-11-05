@@ -8,13 +8,13 @@ server.use(restify.plugins.bodyParser({mapParams: true}));
 
 function inspect_request(req) {
     var data = [
-        '//////// HEADERS ////////',
+        '======= HEADERS =======',
         req.headers, 
-        '//////// AUTHORIZATION ////////',
+        '======= AUTHORIZATION =======',
         req.authorization, 
-        '//////// REQUEST PARAMS (post) ////////',
+        '======= REQUEST PARAMS (post) =======',
         req.params,
-        '//////// REQUEST QUERY (get) ////////',
+        '======= REQUEST QUERY (get) =======',
         req.query
     ];
     console.log(util.inspect(data));
