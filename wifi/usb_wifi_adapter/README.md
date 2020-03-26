@@ -54,3 +54,40 @@ weining@weining-ubuntu:~$ sudo lshw -C network
        capabilities: ethernet physical wireless
        configuration: broadcast=yes driver=rtl88x2bu ip=192.168.0.12 multicast=yes wireless=IEEE 802.11an
 ```
+
+## turn off wifi power saving
+
+source: <https://askubuntu.com/questions/1030653/wifi-randomly-disconnected-on-ubuntu-18-04-lts>
+
+```text
+/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+
+wifi.powersave = 2
+
+# 2 is to disable power saving
+
+/**
+ * NMSettingWirelessPowersave:
+ * @NM_SETTING_WIRELESS_POWERSAVE_DEFAULT: use the default value
+ * @NM_SETTING_WIRELESS_POWERSAVE_IGNORE: don't touch existing setting
+ * @NM_SETTING_WIRELESS_POWERSAVE_DISABLE: disable powersave
+ * @NM_SETTING_WIRELESS_POWERSAVE_ENABLE: enable powersave
+ *
+ * These flags indicate whether wireless powersave must be enabled.
+ **/
+typedef enum {
+    NM_SETTING_WIRELESS_POWERSAVE_DEFAULT       = 0,
+    NM_SETTING_WIRELESS_POWERSAVE_IGNORE        = 1,
+    NM_SETTING_WIRELESS_POWERSAVE_DISABLE       = 2,
+    NM_SETTING_WIRELESS_POWERSAVE_ENABLE        = 3,
+    _NM_SETTING_WIRELESS_POWERSAVE_NUM, /*< skip >*/
+    NM_SETTING_WIRELESS_POWERSAVE_LAST          =  _NM_SETTING_WIRELESS_POWERSAVE_NUM - 1, /*< skip >*/
+    } NMSettingWirelessPowersave;
+```
+
+## DO NOT reinstall network manager
+
+I did that and couldn't restore it... I had to switch back to the built-in
+wifi chip.
+
+
