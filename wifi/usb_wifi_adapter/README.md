@@ -90,4 +90,14 @@ typedef enum {
 I did that and couldn't restore it... I had to switch back to the built-in
 wifi chip.
 
+I installed wicd network manager and it broke the ubuntu 18 desktop - 
+the settings menu was gone.
+
+I managed to fix this by using a wired network (eth0) and completely
+reinstall ubuntu-desktop package: `sudo apt install --reinstall ubuntu-desktop`
+
+This fixed the broken settings menu.
+
+However the wifi network selection menu went empty. I tried the above steps
+to reinstall the adapter driver but it was no use.
 
