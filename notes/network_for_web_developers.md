@@ -71,6 +71,8 @@ need to know the MAC address - use ARP, address resolution
 protocol - for lookup.
 UPDATE: see ../addresses/check_arp_entries
 **review**
+UPDATE: ipv6 completely removes ARP and uses ND (network discovery);
+don’t use a DHCP server (normally). That is done by SLAAC instead.
 
 local: means the devices on the same subnet
 
@@ -210,7 +212,7 @@ the actual lookups depend on the types of DNS record:
 load balancing "the simplest solution is to return multiple A or
 AAAA records and let the client pick an IP addr arbitrarily"
 
-**review**: two useful tools for DNS lookup
+**review**: two useful tools for DNS lookup (see ../dns/lookup)
 
 ### DNS fallback
 
@@ -246,6 +248,7 @@ use timeouts for all:
 - fopen
 - curl
 - SOAP
+**review**
 
 logging means early detection
 
@@ -256,3 +259,4 @@ wanem
 linux: iptables
 `iptables -A INPUT -m statistic --mode random --probability 0.1 -j DROP`
 `iptables -A OUTPUT -m statistic --mode random -probability 0-.1 -j DROP`
+**review**
