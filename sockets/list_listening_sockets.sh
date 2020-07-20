@@ -2,3 +2,4 @@
 
 netstat -lp
 
+netstat -n
