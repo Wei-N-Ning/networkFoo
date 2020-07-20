@@ -83,3 +83,33 @@ each subnet needs a default gateway;
 
 it means I lose 3 usable addresses;
 MY NOTE: this is also covered in Ryan's course
+
+## how do ip packets find their way - routing
+
+each layer 3 network node has a routing table
+
+## TCP/IP packet
+
+lots of stuffs in the header!
+
+### three-way handshake
+
+when a client tries to establish TCP connection to a server,
+it sends a TCP packet with SYN flag
+sequence number = 1000 (or some random number)
+if server accepts it, it sends back a packet with SYN ACK flag,
+sequence number is incremented,
+acknowledge number is set
+client replies with ACK flag ("I acknowledge that you have acknowledged")
+increments both sequence number and acknowledge number
+
+after this the client may send a GET request
+
+if the min travelling time between client and server is 45ms,
+this three-way handshake takes 135ms at least;
+
+### header: sequence number
+
+### header: acknowledgement number
+
+### header: flags
