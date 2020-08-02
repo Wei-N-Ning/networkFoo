@@ -197,6 +197,19 @@ it replies the client
 
 sometime DNS request takes a little time
 
+### A "simple" explanation
+
+**DNS look up** see: <https://syedali.net/2013/08/18/what-happens-when-you-type-in-www-cnn-com-in-your-browser/>
+the linux client checks its name service cache daemon to see if
+the request has been cached before
+
+if not the request is sent to the name server, as specified by
+`/etc/resolv.conf`; at home it is usually the local router;
+
+the router will forward the request to the resolver specified by
+its configuration (the ISP's); the resolver forwards it to the
+`.com` root name server
+
 ### DNS lookup records
 
 the actual lookups depend on the types of DNS record:
