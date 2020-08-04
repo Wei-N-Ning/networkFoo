@@ -22,6 +22,14 @@ unix_tool() {
 
 linux_tool() {
     ethtool en0
+
+: <<EXAMPLE
+# on da-dell
+
+sudo ethtool wlp59s0
+Settings for wlp59s0:
+        Link detected: yes
+EXAMPLE
 }
 
 
