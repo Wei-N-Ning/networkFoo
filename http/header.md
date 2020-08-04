@@ -2,7 +2,7 @@
 
 source: youtube | Headers for Hackers- Wrangling HTTP Like a Pro
 
-check this: https://securityheaders.com/
+check this: <https://securityheaders.com/>
 
 ## Http 1.0
 
@@ -11,7 +11,7 @@ host more than one site per ip address
 run `curl -v example.com 80` or better `curl -I example.com`
 
 -I, --head
-              (HTTP FTP FILE) Fetch the headers only!
+(HTTP FTP FILE) Fetch the headers only!
 
 ```text
 * Rebuilt URL to: example.com/
@@ -54,9 +54,9 @@ X-Cache: HIT
 Content-Length: 648
 ```
 
-__content-type__ what type of data to receive
+**content-type** what type of data to receive
 
-__content-length__ size of the data to receive
+**content-length** size of the data to receive
 
 ## no cache
 
@@ -64,7 +64,7 @@ this is sufficient:
 
 Cache-Control: private, no-store
 
-## meaningless to the broser
+## meaningless to the browser
 
 x-cache (and also x-...); added by CDN for debugging purpose
 
@@ -143,6 +143,6 @@ the 3rd party site"
 
 this policy is to limit the amount of information shared
 
-### access-control-*
+### access-control-\*
 
 adding them degrades security

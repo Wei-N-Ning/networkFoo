@@ -2,9 +2,9 @@
 
 aka
 
-http over tls; transport layer security; https://en.wikipedia.org/wiki/Transport_Layer_Security
+http over tls; transport layer security; <https://en.wikipedia.org/wiki/Transport_Layer_Security>
 
-http over ssl; secure sockets layer; https://www.digicert.com/ssl/
+http over ssl; secure sockets layer; <https://www.digicert.com/ssl/>
 
 http secure
 

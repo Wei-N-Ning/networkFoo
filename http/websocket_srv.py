@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# NOTE: see pyNetwork project
+
 # library document
 # https://websockets.readthedocs.io/en/stable/intro.html
 
@@ -7,6 +9,7 @@
 
 import asyncio
 import websockets
+
 
 async def hello(websocket, path):
     name = await websocket.recv()
@@ -16,6 +19,7 @@ async def hello(websocket, path):
 
     await websocket.send(greeting)
     print(f"> {greeting}")
+
 
 start_server = websockets.serve(hello, 'localhost', 8765)
 
