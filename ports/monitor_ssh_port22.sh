@@ -20,3 +20,15 @@ listen_to_ssh22_on_mac() {
     # then in u18 vbox vm, type some characters in the shell
     # observe the output from tcpdump
 }
+
+listen_to_ssh22_on_linux() {
+    # find out the ethernet interface name using ip addr
+    # then start monitoring port 22 on this interface
+    # (example da-dell)
+    sudo tcpdump -n -i wlp59s0 tcp
+
+    # in separate shell, ssh into the same machine, then
+    # type some commands, such as ls in the login shell
+
+    # observe the traffic from tcpdump
+}

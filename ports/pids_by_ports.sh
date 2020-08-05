@@ -21,6 +21,9 @@ netstat -lnp 2>/dev/null
 # sudo netstat -tulpn 
 netstat -tulpn
 
+# I need sudo to see the programs' names
+sudo netstat -tulpn
+
 # 
 lsof -i tcp:80
 

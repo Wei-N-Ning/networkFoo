@@ -49,4 +49,3 @@ else {
 <(all_service_ports)
 }
 
-is_service_port "$1"
