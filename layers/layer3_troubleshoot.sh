@@ -5,9 +5,11 @@ Networking for system admin L699
 
 router: a device that sends traffic from one IP subnet 
 to another. 
+
 if a host needs to get to a system that is not on the 
 local network, it sends the packets to the default gateway, 
 that's generally the router on the local network.
+
 traditionally the router is either the first or last 
 usable address in a subnet, but it does not have to.
 
@@ -27,6 +29,15 @@ NOTES
 
 display_routing_table() {
     netstat -nr
+
+    # what does UG mean
+    # https://www.tldp.org/LDP/nag2/x-087-2-iface.netstat.html
+    # G
+
+    #     The route uses a gateway.
+    # U
+
+    #     The interface to be used is up.
 
     # on CA dev.jump host (ubuntu)
     # Kernel IP routing table

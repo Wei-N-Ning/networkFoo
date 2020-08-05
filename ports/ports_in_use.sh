@@ -30,14 +30,16 @@ ports_listening() {
     # by root user, such as sshd)
     # tested on CA dev.jump
     sudo netstat -lnp
-
 }
 
 all_ports_in_use() {
     # https://askubuntu.com/questions/538208/how-to-check-opened-closed-ports-on-my-computer
     netstat -atn
 
-    # -n: to speed things up
+    # -a: (--all) display all sockets; -l (--listening) display
+    #     listening server sockets
+    # -t: (--tcp), -u (--udp)
+    # -n: to speed things up without resolve names
     # see: L1181
     # not running reverse DNS lookup on every IP address
     # on a busy server this might mean hundreds or thousands of lookups

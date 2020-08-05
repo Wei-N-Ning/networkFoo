@@ -102,12 +102,17 @@ arp_cmd() {
     # ip-10-0-0-1.ec2.internal (10.0.0.1) at 02:29:0b:d9:d9:3c [ether] on ens5
 }
 
+# name discovery
 ND() {
     # similar to arp, map MAC addresses to IPv6 addresses
     # linux: 
     ip -6 neigh show
     # NOTE:
     # tested in CA dev.jump host, it didn't show nothing
+
+    # tested on da-dell:
+    # ip -6 neigh show
+    # fe80::1e3b:f3ff:fee3:fd92 dev wlp59s0 lladdr 1c:3b:f3:e3:fd:92 router STALE
 }
 
 VLAN() {
@@ -115,7 +120,9 @@ VLAN() {
     # is an extra tag on ethernet frames indicating that 
     # they belong on a different LAN than  the default
     # ethernet frames that arrive at your network card
+
     # without this tag belong in the default LAN 
+
     # these tags let you put multiple VLANS on a single
     # physical wire
     # an interface like eth0:1 on linux
@@ -125,16 +132,20 @@ VLAN() {
 datalink_errors() {
     # the error ocunts on both unix and windows systems
     # are totals since the system booted
+
     # if you see an error count, that does not mean that the
-    # syste, is currently having errors
+    # system is currently having errors
+
     # when you see errors on an interface, determine if thay
     # are increasing or constant
+    
     # NOTE:
     # one linux I can use watch command
     # on mac I need to brew install watch
     
     # on CA dev.jump host
     netstat -i
+    watch -n 1 netstat -i
     # Kernel Interface table
     # Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
     # ens5       9001 0   5095970      0      0 0       4479171      0      0      0 BMRU

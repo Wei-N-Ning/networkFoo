@@ -15,7 +15,7 @@
 # say you call up a web page, your desktop might pick port 
 # 50000 as a source port. It sends a request to port 80 on 
 # the web server. The server accepts the connection, and 
-# sends its response back to port 5000 on the client, using 
+# sends its response back to port 50000 on the client, using 
 # port 80 as the source port. 
 # port 80 on the server's IP address and port 50000 on the 
 # client's IP address now represent a single connection.
@@ -38,6 +38,10 @@
 
 inspect_protocols() {
     cat /etc/protocols 
+
+    # note: /etc/protocols hold the convention but not the actual
+    #      service ports in use!
+    #      use `netstat -l(...)` to inspect the active ports
 }
 
 
