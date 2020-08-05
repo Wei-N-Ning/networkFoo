@@ -5,21 +5,49 @@
 
 identify_interfaces() {
     tcpdump -D 
+
+: <<'EXAMPLE'
+# on da-dell
+
+1.wlp59s0 [Up, Running]
+2.vmnet1 [Up, Running]
+3.vmnet8 [Up, Running]
+4.any (Pseudo-device that captures on all interfaces) [Up, Running]
+5.lo [Up, Running, Loopback]
+6.docker0 [Up]
+7.bluetooth0 (Bluetooth adapter number 0)
+8.nflog (Linux netfilter log (NFLOG) interface)
+9.nfqueue (Linux netfilter queue (NFQUEUE) interface)
+10.usbmon1 (USB bus number 1)
+11.usbmon2 (USB bus number 2)
+12.usbmon3 (USB bus number 3)
+13.usbmon4 (USB bus number 4)
+EXAMPLE
 }
 
 specify_interface() {
     tcpdump -n -i eth0
-
     # -n to turn off dns lookup!
+: <<"EXAMPLE"
+# on da-dell, no activities
+sudo tcp dump -n -i wlp59s0
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on wlp59s0, link-type EN10MB (Ethernet), capture size 262144 bytes
+....
+
+# open a browser and open youtube.com
+# observe the swarm of packets
+
+EXAMPLE
 }
 
-read_udp_packets() {
+howto_read_udp_packets() {
     # 23:10:42.517422 IP 192.168.0.14.51905 > 239.255.255.250.ssdp: UDP, length 174
     # timestamp       IP packet (mine) port   (other host)  
     :
 }
 
-read_tcp_packets() {
+howto_read_tcp_packets() {
     # the presence of flags tells you this is a tcp packet
     # flags tell the state of the tcp connection
     # S: syn packet, this is part of the initial three way handshake
@@ -47,7 +75,7 @@ read_tcp_packets() {
 # read L1878 for the case study
 # when server rejects a connection (404) it put flag R in the packet
 # observe:
-read_tcp_packats_server_reject() {
+troubleshoot_tcp_server_reject() {
     python3 -m http.server 9000
     # observe:
     tcpdump -i lo0 
@@ -98,7 +126,7 @@ filter_tcp_traffic_only() {
     # -n: no dns lookup
     # -i en0: interface selection
     # tcp: choose proto (similarly: arp ... )
-    tcp -ni en0 tcp
+    tcpdump -ni en0 tcp
 
     # better to use "ip"
     # tcp -ni en0 ip host xxx or yyy

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # warning: result is VERY long!
-function run() {
+list_service_and_ports() {
     # NOTE: works on mac
     cat /etc/services | awk '
 { 
@@ -19,6 +19,9 @@ function run() {
 is_service_port() {
     local port_num="${1:?missing port num}"
     perl -MPOSIX -E "say getservbyport(${port_num}, 'tcp');"
+
+    # ==== better ====
+    perl -s -MPOSIX -E 'say getservbyport($num, "tcp")' -- -num=
 }
 
 # UPDATE: SSH definitive 2nd P/374

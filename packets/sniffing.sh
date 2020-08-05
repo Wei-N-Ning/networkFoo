@@ -39,7 +39,7 @@
 # system knows that port 22 is open and attached to the SSH daemon,
 # a request arrives for port 22. The operating system performs the TCP
 # three-way handshake. Only where there is a working connection 
-# does the kenerl poke the SSH daemon and say, hi this data stream is 
+# does the kernel poke the SSH daemon and say, hi this data stream is 
 # for you. 
 
 # //// if a client can set up a three-way handshake, but never actually 

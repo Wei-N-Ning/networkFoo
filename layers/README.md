@@ -440,6 +440,9 @@ on connection
 - when the first host acknowledges the receipt of that info (ACK)
 - it can start transmitting data
 
+NOTE: if the server rejects, it also sends back a packet, but this
+time it carries the `R` flag (rejected)
+
 four way handshake (on teardown)
 
 L1148
