@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ///////////////////////////////////////////////////////////
-# see study notes taken from SSH definitive 2nd at the bottom
+# see study notes taken from SSH definitive 2nd (README.md)
 # ///////////////////////////////////////////////////////////
 
 # motivation:
@@ -16,7 +16,7 @@
 # example: terraformFoo/aws_vpc_take1
 # two public instances, one acting like bastion srv;
 # the goal is, when login to the private-vm at the bastion srv, one does 
-# not private the key
+# not use the private key
 
 ensure_ssh_agent_running() {
     eval `ssh-agent`  
@@ -61,41 +61,47 @@ login_bastion() {
 # to establish a remote terminal session on machine h6
 
 # 2. assuming that agent forwarding is turned on (default sshd config),
-# the client says to the ssh server: I would like to request agent 
-# forwarding, when eastablish the connection
+# the client (laptop) talks to the ssh server (h6): 
+#
+# "I would like to request agent forwarding, when eastablish 
+# the connection"
+#
 
 # 3. sshd on h6 checks its conf to see if it permits agent forwarding
 # (default sshd conf)
 
 # 4. sshd on h6 sets up an IPC channel local to h6 by creating some 
 # unix domain sockets and setting some environment variables. 
-# the resulting IPC mechanism is just like the one ssh-agent sets 
-# up. As a result sshd is now prepared to pose as an SSH agent
-#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# the resulting IPC mechanism is just like the ssh-agent one sets 
+# up locally on the laptop. 
+# As a result sshd is now prepared to pose as an SSH agent
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 # 5. your ssh session is now established between laptop and h6
 
 # 6. next from h6, you run another ssh command to establish an 
 # ssh session with a third machine h7
 
-# 7. the new ssh client now needs a key to make the connection to 
-# h7. It believes there is an agent running on h6, 
+# 7. the new ssh client (on h6) now needs a key to make the 
+# connection to h7. 
+# It believes there is an agent running on h6, 
 # because sshd on h6 is posing as one, so the client makes an 
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 # authentication request over the agent IPC channel
 
-# 8. sshd intercepts the request, masquerading as an agent, and says
-# hello I'm the agent, what would you like to do? the process is 
-# transparent: the client believes it is talking to an agent
+# 8. sshd (on h6) intercepts the request, masquerading as an agent, 
+# and says hello I'm the agent, what would you like to do? 
+# the process is transparent: the client believes it is talking
+# to an agent - as if both were running locally on a laptop
 
 # 9. sshd then forwards the agent-related request back to the original
 #              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# machine, laptop, over the secure connection between laptop and h6,
+# machine - laptop, over the secure connection between laptop and h6,
 # the agent on laptop receives the request and accesses your local key,
 # and its response is forwarded back to sshd on h6
 
-# 10. sshd on h6 passes the response on to the client, and the connection
-# to h7 proceeds 
+# 10. sshd on h6 passes the response on to the h6 client, and the
+# connection from h6 to h7 proceeds 
 
 # 11. agent-forwarding relationship is transitive (as long 
 # as every intermediate host enables forwarding)
