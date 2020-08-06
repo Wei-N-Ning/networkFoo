@@ -2,6 +2,21 @@
 
 source: networking for systems admins, L207
 
+## the most important things about layers
+
+source: <https://github.com/trimstray/test-your-sysadmin-skills#simple-questions>
+
+The most important things to understand about the OSI (or any
+other) model are:
+
+we can divide up the protocols into layers
+
+layers provide encapsulation
+
+layers provide abstraction
+
+layers decouple functions from others
+
 ## layers
 
 they are divided into several logical layers for convenience
