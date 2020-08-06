@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+# source: <https://github.com/trimstray/test-your-sysadmin-skills#simple-questions>
+# how to check the default route table
 route -n 
+# Using the commands netstat -nr, route -n or ip route show we can see the default route and routing tables.
 
 # also recall arp -a
 
