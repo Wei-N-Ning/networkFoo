@@ -30,7 +30,17 @@ ports_listening() {
     # by root user, such as sshd)
     # tested on CA dev.jump
     sudo netstat -lnp
+
+    lsof -i
+    lsof -i:80  # all the processes listening to port 80
+    kill -9 $(lsof -t -i:80)  # -t for pids only
+
+    ss -l  # recall ss is a better replacement for netstat
+    netstat -atn # tcp
+    netstat -aut # udp
+    netstat -tulapn # tcp + udp
 }
+
 
 all_ports_in_use() {
     # https://askubuntu.com/questions/538208/how-to-check-opened-closed-ports-on-my-computer
