@@ -11,6 +11,11 @@ common_security_params_server() {
     # set a cap on the number of authentication errors to prevent
     # brutal force
     # MaxAuthTries 6
+
+    # disallow ssh keypairs without passphrase
+    # source: https://serverfault.com/questions/589680/disallow-ssh-keys-without-passphrase
+    cat /etc/ssh/sshd_config
+    # RequiredAuthentications2 pubkey,password
 }
 
 common_security_params_client() {
