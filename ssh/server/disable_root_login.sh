@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
 
-PermitRootLogin no
+# this param:
+# PermitRootLogin no
 
 # not just prohibit-password, but no direct login at all
 
