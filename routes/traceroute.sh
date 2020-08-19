@@ -13,6 +13,7 @@
 
 # like ping, can omit the 0s inbetween
 traceroute 1.1
+traceroute -n google.com
 
 # Unix/Linux traceroute uses udp (not icmp); windows uses icmp; 
 # observe this:
