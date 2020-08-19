@@ -55,11 +55,13 @@ to understand the modern internet-attached network you need only 5 layers:
 the physical layer traditional has no intelligence, the datalink
 layer determines how it is used.
 
+the unit of data here is `bit`
+
 ## layer 2
 
 the datalink layer transforms the networks' upper layers into the
-signals transmitted over the wire; a single lump of datalink data
-is called a frame.
+signals transmitted over the wire; **a single lump of datalink data
+is called a frame.**
 
 NOTE:
 
@@ -84,17 +86,19 @@ the network layer provides a consistent interface to network
 programs, so they can use the network over any physical and
 datalink layers.
 
-A single chunk of network data is called a packet.
+A single chunk of network data is called a **packet**.
 
 the internet uses the internet protocol (IP) -> the IP in TCP/IP;
 
 ## layer 4
 
-layer 4 transport, a piece of transport layer data is a segment.
+layer 4 transport, **a piece of transport layer data is a segment.**
 
-3 most common transport layer protocols: ICMP (internet control
-message proto), TCP (transmission control proto), user datagram
-proto (UDP)
+3 most common transport layer protocols:
+
+ICMP (internet control message proto, e.g. the `ping` command);
+
+TCP (transmission control proto), user datagram proto (UDP)
 
 ## layer 5 - 6
 
