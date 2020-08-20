@@ -1,5 +1,15 @@
 # Ports
 
+source: <https://en.wikipedia.org/wiki/Port_(computer_networking)>
+
+In computer networking, a port is a communication endpoint.
+At the software level, within an operating system, a port is a
+logical construct that identifies a specific process or a type of
+network service.
+
+"Put it simply, it is how we address the service, like we address
+a building or a office room"
+
 ## ranges
 
 1-65535
