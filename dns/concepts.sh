@@ -1,9 +1,48 @@
 #!/usr/bin/env bash
 
+################################################################
+: <<"TEXT"
+dns resolves hostname to ip, ip to hostname (reverse), and
+hostname to hostname
+
+see: lookup.sh for DNS record breakdown
+
+(ip to hostname) PTR
+
+the package on linux that handles DNS requests
+
+apt search bind | grep BIND
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+  Documentation for BIND
+  LDAP back-end plug-in for BIND
+  Utilities for BIND
+  DNS statistics RRDtool frontend for BIND9
+  Clients provided with BIND
+  parser for BIND Config files
+  Parser class for BIND configuration files
+  Static Libraries and Headers used by BIND
+  Development files for the exported BIND libraries
+  BIND9 Shared Library used by BIND
+  DNS Shared Library used by BIND
+  DNS Shared Library used by BIND
+  ISC Shared Library used by BIND
+  Command Channel Library used by BIND
+  Command Channel Library used by BIND
+  Config File Handling Library used by BIND
+  Lightweight Resolver Library used by BIND
+  fast BIND-style zonefile parser on top of Net::DNS
+  BIND backend for PowerDNS
+
+
+TEXT
+################################################################
+
 # source
 # networking for systems admin, L1452
 
-# DNS runs on TCP and UDP, using port 53 on both
+# DNS runs on TCP and UDP, using **port 53** on both
 # every network needs a DNS server, also called a nameserver, 
 # to gather this information for you.
 
