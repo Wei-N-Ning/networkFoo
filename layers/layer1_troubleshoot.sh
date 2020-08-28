@@ -17,6 +17,8 @@ unix_tool() {
     # ^^^^^
 	# status: active
 
+    # check whether a wire or wireless device shows up
+    lspci -v
     
 }
 
