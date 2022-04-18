@@ -1,0 +1,9 @@
+.idea
+.vscode
+build
+cmake-build-debug
+*.pyc
+*~
+*.swp
+*.enc
+*.ignore.*
