@@ -61,8 +61,9 @@ ping_cmd() {
 
 # Address Resolution Protocol
 # ARP maps ethernet address (MAC) to IPv4 addresses and back
-# is the glue that attaches the network layer to the datalink
-# layer
+# is the "glue" (or bridge) that attaches the network layer to the datalink
+# layer (calling it a protocol can be confusing...)
+# 
 # a host that needs to transmit data to another host on the 
 # local ethernet first broadcasts an ethernet request, 
 # asking which MAC address is responsible for this IP addr,
@@ -72,6 +73,10 @@ ping_cmd() {
 # when the original host gets this response, it adds the IP
 # and MAC address to its ARP table. The original host 
 # can then send the dest traffic.
+#
+# also the one that responds to the ARP query (ARP query packet)
+# will add the caller's IP address to its ARP table, even though
+# it might not need the caller's info right now.
 arp_cmd() {
     # view ARP table
     # if the system sees many hosts on the local ethernet,

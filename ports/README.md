@@ -44,6 +44,16 @@ privilege ports
 443 https
 ```
 
+1024 - 49151: known as user ports or registered ports (read:
+Multiplayer game development P/40); ICANN (Internet Corporation
+for Assigned Names and Numbers) maintains a port number registry
+with which various protocol and application developers can register
+the ports their application use
+
+49152 - 65535: dynamic ports; never assigned by IANA and are
+fair game for any process to use. As a good internet citizen,
+you should use only dynamic ports while building your app.
+
 ## Command Ports
 
 SERVICE PORT

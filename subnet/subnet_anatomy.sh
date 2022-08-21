@@ -32,7 +32,9 @@ EXAMPLE
 }
 
 subnet_cidr_anatomy() {
-    # class less interdomain routing
+    # CIDR
+    # (c)lass-less (i)nter(d)omain (r)outing
+    
     # allow network to be subdivided regardless of their
     # traditional class
     # the sub-ranges are called subnets
